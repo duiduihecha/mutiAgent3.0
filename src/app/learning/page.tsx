@@ -259,11 +259,19 @@ export default function LearningPage() {
           console.warn("[DEMO 极速模式] 解析失败（非阻塞，降级走正常轮询）:", e);
         }
 
-        // 异步任务模式：POST 秒级返回 task_id，前端轮询进度/结果
-        // （同步长请求会撞 Cloudflare 隧道/代理 ~100s 响应超时，故改为轮询）
+        // 同步长请求：Vercel Hobby 300s 足够跑完 ~155s LLM 链路
+        // 用平滑进度条动画给用户反馈（渐进到 90%，返回后跳 100%）
         let response: Response;
         try {
-          response = await fetch("/api/learning/jobs", {
+          // 启动进度条动画
+          const animLabels = ["准备中...","分析学习画像...","生成母语阐释...","生成跨文化对比...","生成场景化内容...","生成练习题...","质量审核中..."];
+          let animIdx = 0;
+          const animTimer = setInterval(() => {
+            animIdx = Math.min(animIdx + 1, animLabels.length - 1);
+            setProgress((prev) => ({ ...prev, pct: Math.min(prev.pct + 5, 90), label: animLabels[animIdx], modulesDone: prev.modulesDone }));
+          }, 3500);
+
+          response = await fetch("/api/learning", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -281,19 +289,20 @@ export default function LearningPage() {
             setLoading(false);
             return;
           }
+          clearInterval(animTimer); setProgress((p) => ({ ...p, pct: 100, label: "完成！" }));
+          clearInterval(animTimer); setProgress((p) => ({ ...p, pct: 100, label: "完成！" }));
           throw fetchErr;
         }
 
         const result = await response.json();
 
         if (!result.success) {
-          // 如果已命中演示 case，静默忽略本次 jobs 失败 → 用户继续看离线内容
+          // 演示模式静默忽略
           if (spDemoKey && DEMO_CASES[spDemoKey]) {
-            console.warn("[DEMO 极速模式] jobs 失败，保留离线 case：", result.error || result.message || "");
+            console.warn("[DEMO 极速模式] 同步请求失败:", result.error || "");
             setLoading(false);
             return;
           }
-          // 如果学习者ID不存在，清除localStorage中的过期数据
           if (result.error && result.error.includes("不存在")) {
             localStorage.removeItem("learner_id");
           }
@@ -302,52 +311,11 @@ export default function LearningPage() {
           return;
         }
 
-        // 轮询任务状态（每 3 秒），直到 completed / failed
-        // 故意：网络临时不可达（服务重启/代理抖动）时不立即报错，
-        // 继续下一轮重试，避免一次 fetch 失败就让用户看到「网络错误」
-        const taskId: string = result.task_id;
-        const MAX_CONSECUTIVE_FAILURES = 6; // 连续 6 次失败（约 18s）才认输
-        let consecutiveFailures = 0;
-        for (;;) {
-          await new Promise((r) => setTimeout(r, 3000));
-          try {
-            const taskRes = await fetch(`/api/learning/jobs/${taskId}`);
-            const taskJson = await taskRes.json();
-            consecutiveFailures = 0; // 任意一次成功重置计数
-            if (!taskJson.success) {
-              console.warn("查询任务未成功，继续轮询:", taskJson.error);
-              continue;
-            }
-            const taskStatus: string = taskJson.task.status;
-            // 更新进度（不管 running 还是 completed）
-            if (taskJson.task.progress !== undefined) {
-              setProgress({
-                pct: taskJson.task.progress,
-                label: taskJson.task.stage_label || "处理中...",
-                modulesDone: taskJson.task.modules_done || {},
-              });
-            }
-            if (taskStatus === "completed") {
-              setData(taskJson.task.result);
-              if (taskJson.task.result?.learner?.id) {
-                localStorage.setItem("learner_id", taskJson.task.result.learner.id);
-              }
-              break;
-            }
-            if (taskStatus === "failed") {
-              setError(taskJson.task.error || "生成失败");
-              break;
-            }
-            // queued / running → 继续轮询
-          } catch (err) {
-            consecutiveFailures += 1;
-            console.warn(`轮询失败 ${consecutiveFailures}/${MAX_CONSECUTIVE_FAILURES}:`, err);
-            if (consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
-              setError("暂时无法连接到服务，请刷新页面或稍后重试");
-              break;
-            }
-            // 否则继续下一轮重试
-          }
+        // 同步模式 result.data 直接就是完整内容
+        const resultData = result.data ?? result;
+        setData(resultData);
+        if (resultData?.learner?.id) {
+          localStorage.setItem("learner_id", resultData.learner.id);
         }
         setLoading(false);
       } catch (err) {
