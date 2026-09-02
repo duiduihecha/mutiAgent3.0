@@ -1,0 +1,56 @@
+{
+  "id": "vlog_1785207016014_9yefaz",
+  "native_language": "英语",
+  "hsk_level": 3,
+  "scene_name": "餐饮美食",
+  "knowledge_point_id": "food_ordering",
+  "title": "中文学习日记 | 餐饮美食：在中国文化中，合餐制是非常重要的社交方式",
+  "scenes": [
+    {
+      "narration": "Today I learned something fascinating about Chinese culture! 🎬",
+      "chinese_sample": "今天的学习主题：餐饮美食",
+      "pinyin": "",
+      "duration_sec": 4,
+      "bg_type": "opening",
+      "visual_hint": "渐变背景 + 标题文字入场 + 学习者头像"
+    },
+    {
+      "narration": "Let me tell you about \"在中国文化中，合餐制是非常重要的社交方式\" in Chinese culture.",
+      "chinese_sample": "在中国文化中，合餐制是非常重要的社交方式。家人和朋友围坐在一起，共享多道菜肴，体现了\"团圆\"和\"分享...",
+      "duration_sec": 7,
+      "bg_type": "culture",
+      "visual_hint": "中国传统文化元素图片 + 关键概念浮层文字"
+    },
+    {
+      "narration": "Here's an interesting comparison: in 西方：分餐制，体现个人主义, we do it this way, but in China, 中国：合餐共享，体现集体主义.",
+      "chinese_sample": "中国：中国：合餐共享，体现集体主义 | 英语：西方：分餐制，体现个人主义",
+      "duration_sec": 6,
+      "bg_type": "comparison",
+      "visual_hint": "分屏画面：左为母语文化，右为中国文化"
+    },
+    {
+      "narration": "Now let me practice what I learned!",
+      "chinese_sample": "这个多少钱？(zhè ge duō shao qián?)",
+      "duration_sec": 5,
+      "bg_type": "practice",
+      "visual_hint": "练习题卡片 + 打字效果答案揭示"
+    },
+    {
+      "narration": "That's it for today's Chinese learning diary. See you next time! 再见! 👋",
+      "chinese_sample": "我们下次再见！",
+      "pinyin": "wǒmen xiàcì zàijiàn",
+      "duration_sec": 3,
+      "bg_type": "closing",
+      "visual_hint": "渐出画面 + 关注引导 + 话题标签展示"
+    }
+  ],
+  "total_duration_sec": 25,
+  "hashtags": [
+    "#学中文",
+    "#中国美食",
+    "#中文学习日记",
+    "#ChineseFood"
+  ],
+  "cover_text": "在中国文化中，合餐制是非常重要的社交方式\nHSK3 · 英语",
+  "generated_at": "2026-07-28T02:50:16.014Z"
+}

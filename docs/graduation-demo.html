@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>跨文化中文学习平台 · 体验与质量优化 Demo</title>
+<style>
+  :root {
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --ink: #1f2937;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --brand: #2563eb;
+    --brand-soft: #eff4ff;
+    --red: #dc2626;
+    --red-soft: #fef2f2;
+    --green: #16a34a;
+    --green-soft: #f0fdf4;
+    --amber: #d97706;
+    --amber-soft: #fffbeb;
+    --purple: #7c3aed;
+    --radius: 14px;
+    --shadow: 0 1px 3px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.04);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 80px; }
+  header h1 { font-size: 26px; margin: 0 0 6px; letter-spacing: -.3px; }
+  header p { color: var(--muted); margin: 0 0 4px; }
+  .tag { display:inline-block; background: var(--brand-soft); color: var(--brand); font-size: 12px; padding: 3px 10px; border-radius: 999px; margin-right:6px; }
+
+  section { margin-top: 36px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px 24px; }
+  h2 { font-size: 20px; margin: 0 0 4px; display:flex; align-items:center; gap:10px; }
+  h2 .num { background: var(--brand); color:#fff; width:30px; height:30px; border-radius:9px; display:inline-flex; align-items:center; justify-content:center; font-size:15px; }
+  h3 { font-size: 15px; margin: 18px 0 8px; color: var(--ink); }
+  .sub { color: var(--muted); font-size: 13px; margin: 0 0 10px; }
+
+  /* pipeline diagram */
+  .flow { display:flex; align-items:stretch; gap:0; flex-wrap:wrap; }
+  .node { border:1px solid var(--line); background:#fff; border-radius:10px; padding:10px 12px; min-width:120px; text-align:center; font-size:13px; }
+  .node small { display:block; color:var(--muted); font-size:11px; }
+  .arrow { display:flex; align-items:center; color:var(--muted); padding:0 6px; font-size:18px; }
+  .branch { display:flex; gap:14px; margin-top:10px; flex-wrap:wrap; }
+  .node.bug { border-color: var(--red); background: var(--red-soft); }
+  .node.ok { border-color: var(--green); background: var(--green-soft); }
+  .legend { font-size:12px; color:var(--muted); margin-top:12px; display:flex; gap:18px; flex-wrap:wrap;}
+  .dot { display:inline-block; width:10px;height:10px;border-radius:3px; margin-right:5px; vertical-align:middle;}
+
+  .buglist { margin:14px 0 0; padding:0; list-style:none; }
+  .buglist li { padding:9px 12px; border-left:3px solid var(--red); background:var(--red-soft); border-radius:8px; margin-bottom:8px; font-size:13.5px; }
+  .buglist li b { color: var(--red); }
+
+  /* simulators */
+  .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+  @media (max-width: 760px){ .grid2{grid-template-columns:1fr;} }
+  .box { border:1px solid var(--line); border-radius:12px; padding:16px; background:#fff; }
+  .box.old { background: var(--red-soft); border-color: #fca5a5; }
+  .box.new { background: var(--green-soft); border-color: #bbf7d0; }
+  .box h4 { margin:0 0 10px; font-size:14px; }
+  label { font-size:13px; color:var(--muted); display:block; margin:10px 0 4px; }
+  input[type=text], select { width:100%; padding:9px 11px; border:1px solid var(--line); border-radius:9px; font-size:14px; background:#fff; color:var(--ink); }
+  input[type=range]{ width:100%; }
+  button { cursor:pointer; background:var(--brand); color:#fff; border:0; padding:9px 16px; border-radius:9px; font-size:14px; margin-top:12px; }
+  button.ghost { background:#fff; color:var(--brand); border:1px solid var(--brand); }
+  .result { margin-top:12px; padding:12px; border-radius:9px; font-size:13.5px; background:#f8fafc; border:1px dashed var(--line); white-space:pre-wrap; }
+  .result.bad { background:var(--red-soft); border-color:#fca5a5; color:#7f1d1d; }
+  .result.good { background:var(--green-soft); border-color:#bbf7d0; color:#14532d; }
+
+  .pill { display:inline-block; font-size:12px; padding:2px 9px; border-radius:999px; margin:2px 4px 2px 0; }
+  .pill.k { background:#eef2ff; color:#3730a3; }
+  .pill.s { background:#f1f5f9; color:#475569; }
+
+  /* P2 curve */
+  .curvebox { background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px; }
+  svg { width:100%; height:200px; display:block; }
+  .rank { list-style:none; margin:10px 0 0; padding:0; }
+  .rank li { display:flex; justify-content:space-between; padding:8px 10px; border:1px solid var(--line); border-radius:8px; margin-bottom:6px; font-size:13px; }
+  .rank li.top { border-color:var(--brand); background:var(--brand-soft); }
+  .rank li .score { font-variant-numeric: tabular-nums; color:var(--muted); }
+  .flag { font-size:11px; color:var(--brand); }
+
+  .switchrow { display:flex; align-items:center; gap:12px; margin:6px 0 4px; }
+  .switch { position:relative; width:52px; height:28px; }
+  .switch input { opacity:0; width:0; height:0; }
+  .slider { position:absolute; inset:0; background:#cbd5e1; border-radius:999px; transition:.2s; }
+  .slider:before { content:""; position:absolute; height:22px; width:22px; left:3px; top:3px; background:#fff; border-radius:50%; transition:.2s; }
+  .switch input:checked + .slider { background:var(--green); }
+  .switch input:checked + .slider:before { transform:translateX(24px); }
+
+  table { width:100%; border-collapse:collapse; margin-top:10px; font-size:13px; }
+  th,td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+  th { background:#f8fafc; color:var(--muted); font-weight:600; }
+  footer { margin-top:40px; color:var(--muted); font-size:12.5px; border-top:1px solid var(--line); padding-top:16px; }
+  code { background:#f1f5f9; padding:1px 6px; border-radius:5px; font-size:12.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>跨文化中文学习平台 · 体验与质量优化 Demo</h1>
+    <p>毕业设计 · 负责人兼开发者视角 · 4 条真实用户反馈的根因与可落地修复</p>
+    <p><span class="tag">P1 答非所问</span><span class="tag">P2 学了就忘</span><span class="tag">P3 干预不准</span><span class="tag">P4 偶发低质</span></p>
+  </header>
+
+  <!-- ============ 现状管线 ============ -->
+  <section class="card">
+    <h2><span class="num">0</span>现状管线（LangGraph 编排，<code>learning-graph.ts</code>）</h2>
+    <p class="sub">红色 = 已定位的 4 个缺陷点；绿色 = 已具备、本次复用的资产。</p>
+    <div class="flow">
+      <div class="node ok">START<small>用户请求</small></div>
+      <div class="arrow">→</div>
+      <div class="node">checkCache<small>缓存查询</small></div>
+      <div class="arrow">→</div>
+      <div class="node bug">generateExercises<small>仅 A4 重生成<br>跳过 A2/A3/A5</small></div>
+      <div class="arrow">→</div>
+      <div class="node ok">END<small>返回（含低质风险）</small></div>
+    </div>
+    <div class="branch">
+      <div class="node">cache_miss 分支</div>
+      <div class="node ok">A1 画像</div>
+      <div class="node ok">A2+A3 并行</div>
+      <div class="node ok">A4 生成</div>
+      <div class="node bug">A5 审核<small>is_qualified<br>仅遥测不拦截</small></div>
+      <div class="node ok">saveKB</div>
+      <div class="node ok">END</div>
+    </div>
+    <ul class="buglist">
+      <li><b>P1 答非所问：</b><code>getKnowledgePointByScene</code> 用模糊 <code>ILIKE + limit(1)</code> 匹配，多义无消歧，错命中还写进缓存。</li>
+      <li><b>P2 学了就忘：</b>BKT/遗忘曲线已算已落库，但 <code>needsReview</code> 只生成 reason 文本、不进推荐排序，全代码无 <code>next_review</code> 调度。</li>
+      <li><b>P3 干预不准：</b><code>A1.calculateAnxiety</code> 纯数学、零 LLM，系统无安抚/降难度话术生成能力，更不区分母语。</li>
+      <li><b>P4 偶发低质：</b>缓存路径跳过 A5；即便跑了 <code>a5_joint</code> 仲裁，<code>generateExercises</code> 也无条件 <code>return final_result</code>，FLAG 不拦截。</li>
+    </ul>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--red)"></span>缺陷点（本次修复）</span>
+      <span><span class="dot" style="background:var(--green)"></span>已具备资产（KG / BKT / A5 / CIEval 复用）</span>
+    </div>
+  </section>
+
+  <!-- ============ P1 ============ -->
+  <section class="card">
+    <h2><span class="num">1</span>P1 答非所问 → 知识图谱语义路由</h2>
+    <p class="sub">输入场景串，对比「模糊 LIKE（旧）」与「KG 语义路由（新）」的命中结果。多义场景（饮食/餐桌礼仪/食物禁忌/节日食品）最容易串味。</p>
+    <div class="grid2">
+      <div class="box old">
+        <h4>❌ 旧：模糊 LIKE + limit(1)</h4>
+        <label>输入场景（试试：饮食 / 请客吃饭 / 过年吃什么）</label>
+        <input type="text" id="p1input" value="请客吃饭要注意什么" />
+        <button onclick="runP1()">运行匹配</button>
+        <div class="result bad" id="p1old">—</div>
+      </div>
+      <div class="box new">
+        <h4>✅ 新：KG 语义路由（消歧 + 置信度）</h4>
+        <div class="result good" id="p1new">—</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ P2 ============ -->
+  <section class="card">
+    <h2><span class="num">2</span>P2 学了就忘 → BKT + 间隔重复调度</h2>
+    <p class="sub">拖动滑块看掌握度衰减曲线与 <code>next_review</code>；右侧演示推荐排序中 <code>needsReview</code> 被加权置顶。</p>
+    <div class="grid2">
+      <div class="box">
+        <h4>遗忘衰减 + 复习调度</h4>
+        <label>后验掌握度 P(L)：<span id="mval">0.75</span></label>
+        <input type="range" id="mastery" min="0" max="1" step="0.01" value="0.75" oninput="runP2()" />
+        <label>距上次复习天数：<span id="dval">20</span> 天</label>
+        <input type="range" id="days" min="0" max="60" step="1" value="20" oninput="runP2()" />
+        <div class="curvebox"><svg id="curve" viewBox="0 0 320 180" preserveAspectRatio="none"></svg></div>
+        <div class="result" id="p2res">—</div>
+      </div>
+      <div class="box">
+        <h4>推荐排序（needsReview 加权）</h4>
+        <ul class="rank" id="rank"></ul>
+        <p class="sub" style="margin-top:8px">未修复：needsReview 与全新知识点同权（novelty=1），从不主动召回。修复后 +0.3 权重，置顶推荐。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ P3 ============ -->
+  <section class="card">
+    <h2><span class="num">3</span>P3 干预不准 → 母语感知情感干预（A6）</h2>
+    <p class="sub">选母语 × 焦虑档位，生成差异化安抚话术。旧系统只有一份「通用降难度」模板，不区分母语与情绪。</p>
+    <div class="grid2">
+      <div class="box old">
+        <h4>❌ 旧：通用模板（对所有母语一致）</h4>
+        <div class="result bad" id="p3old">—</div>
+      </div>
+      <div class="box new">
+        <h4>✅ 新：A6 母语感知话术</h4>
+        <label>母语文化圈</label>
+        <select id="p3lang">
+          <option value="英语">英语圈（直接·结构化）</option>
+          <option value="日语">日语圈（间接·留面子）</option>
+          <option value="韩语">韩语圈（共情·小目标）</option>
+          <option value="西班牙语">西语圈（热情·鼓励）</option>
+          <option value="法语">法语圈（优雅·逻辑）</option>
+        </select>
+        <label>情绪/焦虑档位</label>
+        <select id="p3anx">
+          <option value="high">高（受挫/想放弃）</option>
+          <option value="medium">中（略有卡顿）</option>
+          <option value="low">低（顺畅）</option>
+        </select>
+        <button onclick="runP3()">生成话术</button>
+        <div class="result good" id="p3new">—</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ P4 ============ -->
+  <section class="card">
+    <h2><span class="num">4</span>P4 偶发低质 → A5 网关硬门控</h2>
+    <p class="sub">模拟 A5 仲裁返回 <code>passed=false</code>。开关对比：关闭时未过审内容照样触达；开启时拦截并回退到已审核版本/重生成。</p>
+    <div class="switchrow">
+      <label class="switch"><input type="checkbox" id="p4gate" onchange="runP4()" checked><span class="slider"></span></label>
+      <span id="p4stat" style="font-size:14px;font-weight:600;color:var(--green)">A5 硬门控：开启</span>
+    </div>
+    <div class="grid2">
+      <div class="box">
+        <h4>缓存路径（generateExercises）</h4>
+        <div class="result" id="p4cache">—</div>
+      </div>
+      <div class="box">
+        <h4>完整路径（a5Controller）</h4>
+        <div class="result" id="p4full">—</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 验收 ============ -->
+  <section class="card">
+    <h2><span class="num">✓</span>验收标准（量化）</h2>
+    <table>
+      <thead><tr><th>问题</th><th>指标</th><th>目标阈值</th><th>评测方法</th></tr></thead>
+      <tbody>
+        <tr><td>P1</td><td>场景→知识点 top-1 命中准确率</td><td>≥ 95%（200 条多义探针）</td><td>离线探针比对</td></tr>
+        <tr><td>P1</td><td>线上「答非所问」反馈率</td><td>较基线 ↓ ≥ 80%</td><td>feedback 表统计</td></tr>
+        <tr><td>P2</td><td>30 天 retention（P(L)≥0.7 占比）</td><td>≥ 70%</td><td>掌握度追踪</td></tr>
+        <tr><td>P2</td><td>needsReview 进推荐 Top-3</td><td>≥ 90%</td><td>排序日志回放</td></tr>
+        <tr><td>P3</td><td>母语×焦虑话术覆盖率</td><td>100%（24 类）</td><td>穷举回归</td></tr>
+        <tr><td>P3</td><td>CIEval 文化适配度</td><td>≥ 4.0 / 5</td><td>双裁判打分</td></tr>
+        <tr><td>P4</td><td>线上「低质题」投诉</td><td>= 0</td><td>反馈监控</td></tr>
+        <tr><td>P4</td><td>is_qualified 拒绝项触达率</td><td>0%（100% 拦截）</td><td>网关日志对账</td></tr>
+        <tr><td>P4</td><td>端到端质量分（A5 四維均分）</td><td>≥ 4.2 / 5</td><td>CIEval 输出</td></tr>
+      </tbody>
+    </table>
+    <p class="sub" style="margin-top:10px">通用门禁：修复前后跑 <code>cieval_consistency.ts --n 40</code>，保证内容正确性（Pearson/Spearman/Cohen κ）不退化。</p>
+  </section>
+
+  <footer>
+    演示为方案可视化原型，逻辑与阈值锚定仓库真实代码（learning-graph.ts / multi-agent-system.ts / learner-graph.ts / results/route.ts）。
+    优化均复用现有知识图谱 / CIEval / BKT / A5 网关，属「小改动、大体验」的毕业设计增量。
+  </footer>
+</div>
+
+<script>
+/* ---------- P1: 场景 → 知识点 ---------- */
+// 迷你知识图谱：topic 节点 + 同义词/关键词
+const KP_GRAPH = {
+  "中式饮食总览": { kw:["饮食","吃","食物","美食","中式餐饮"], syn:["饮食","吃喝"] },
+  "餐桌礼仪":     { kw:["请客","吃饭","做客","敬酒","筷子","餐桌","礼仪"], syn:["请客吃饭","吃饭礼仪"] },
+  "食物禁忌":     { kw:["禁忌","不能","避讳","宗教","忌口"], syn:["饮食禁忌"] },
+  "节日食品":     { kw:["过年","春节","中秋","粽子","月饼","团圆","节庆"], syn:["过年吃什么","节日美食"] },
+  "中式烹饪":     { kw:["做菜","炒","烹饪","厨房","食谱"], syn:["怎么炒菜"] },
+};
+function scoreTopic(scene, topic){
+  const t = KP_GRAPH[topic];
+  let s = 0;
+  for(const k of t.kw) if(scene.includes(k)) s += 1;
+  for(const k of t.syn) if(scene.includes(k)) s += 2.5;
+  return s;
+}
+function runP1(){
+  const scene = (document.getElementById('p1input').value||"").trim();
+  // 旧：模糊 LIKE 模拟 —— 取第一个命中（无消歧），无匹配兜底成 sceneId
+  let oldHit = null;
+  for(const t of Object.keys(KP_GRAPH)){
+    if(KP_GRAPH[t].kw.some(k=>scene.includes(k))){ oldHit = t; break; } // 顺序命中，多义时取第一个
+  }
+  const oldText = oldHit
+    ? `命中：${oldHit}\n(模糊 LIKE 顺序取第一个，多义场景常串味；置信度未知)`
+    : `无匹配 → 兜底把「${scene}」直接当知识点 ID 写缓存（错知识点被当成命中）`;
+  document.getElementById('p1old').textContent = oldText;
+
+  // 新：KG 语义路由 —— 多候选打分 + 置信度 + 消歧
+  const scored = Object.keys(KP_GRAPH).map(t=>({t, s:scoreTopic(scene,t)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);
+  if(scored.length===0){
+    document.getElementById('p1new').textContent = `KG 路由：无高置信候选 → 不兜底成 sceneId，回退 A2 回译校验 / 请用户确认（避免错命中）`;
+    return;
+  }
+  const top = scored[0], second = scored[1];
+  const conf = second ? (top.s/(top.s+second.s)) : 1;
+  let txt = `候选打分：\n` + scored.slice(0,3).map(x=>`  · ${x.t}: ${x.s}`).join("\n");
+  txt += `\n\n→ top-1：${top.t}（置信度 ${(conf*100).toFixed(0)}%）`;
+  if(conf < 0.6 && second){
+    txt += `\n⚠️ 置信度偏低（${top.t} vs ${second.t} 接近）→ 触发消歧：请求用户确认或并行展开两Topic子图`;
+  } else {
+    txt += `\n✅ 高置信，锚定 ${top.t} 注入 A2/A3/A4 硬约束 + 写缓存前 topic 一致性校验`;
+  }
+  document.getElementById('p1new').textContent = txt;
+}
+
+/* ---------- P2: BKT + 间隔重复 ---------- */
+const TAU = 25; // 遗忘时间常数（天）
+function decayed(m, d){ return m * Math.exp(-d/TAU); }
+function runP2(){
+  const m = parseFloat(document.getElementById('mastery').value);
+  const d = parseInt(document.getElementById('days').value);
+  document.getElementById('mval').textContent = m.toFixed(2);
+  document.getElementById('dval').textContent = d;
+  const cur = decayed(m, d);
+  const needs = (m>=0.6 && cur<0.4);
+  // 间隔：SM-2 风格
+  let interval = Math.max(1, Math.round(7 * Math.pow(1.6, Math.floor((1-cur)*5))));
+  // 画曲线
+  const svg = document.getElementById('curve');
+  let path="", area="";
+  for(let i=0;i<=60;i++){
+    const y = decayed(m,i);
+    const x = (i/60)*300+10, yy = 165 - y*150;
+    path += (i===0?"M":"L")+x.toFixed(1)+" "+yy.toFixed(1)+" ";
+  }
+  // 当前点
+  const cx=(d/60)*300+10, cy=165-cur*150;
+  svg.innerHTML = `
+    <line x1="10" y1="165" x2="310" y2="165" stroke="#e5e7eb"/>
+    <line x1="10" y1="15" x2="10" y2="165" stroke="#e5e7eb"/>
+    <path d="${path}" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+    <circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="5" fill="#dc2626"/>
+    <text x="14" y="12" font-size="10" fill="#6b7280">P(L)</text>
+    <text x="270" y="178" font-size="10" fill="#6b7280">天数</text>
+    <text x="${(cx+6).toFixed(1)}" y="${(cy-8).toFixed(1)}" font-size="10" fill="#dc2626">当前</text>`;
+  document.getElementById('p2res').innerHTML =
+    `当前掌握度 P(L) = <b>${cur.toFixed(2)}</b><br>` +
+    (needs
+      ? `🔁 <b>needsReview = 真</b> → 进入复习队列，建议 ${interval} 天后再测（next_review）`
+      : `✓ 暂不需复习（mastery=${m.toFixed(2)} 或衰减未跌破 0.4）`);
+  // 推荐排序
+  const kps = [
+    {name:"节日食品·中秋", m:0.82, d:3},
+    {name:"餐桌礼仪·敬酒", m:0.70, d:22, learned:true}, // needsReview
+    {name:"食物禁忌·宗教", m:0.55, d:1},
+    {name:"中式烹饪·炒", m:0.20, d:0, novel:true},
+  ];
+  kps.forEach(k=>{
+    let score = k.novel ? 1.0 : 0.4; // 旧：全新=1，已学=0.4（needsReview 同权）
+    if(k.learned){ const c=decayed(k.m,k.d); if(k.m>=0.6 && c<0.4) score += 0.3; } // 新：+0.3
+    k.score = score; k.needs = k.learned && (k.m>=0.6 && decayed(k.m,k.d)<0.4);
+  });
+  kps.sort((a,b)=>b.score-a.score);
+  document.getElementById('rank').innerHTML = kps.map((k,i)=>
+    `<li class="${i===0?'top':''}"><span>${k.name} ${k.needs?'<span class="flag">· needsReview</span>':''}</span><span class="score">${k.score.toFixed(2)}</span></li>`
+  ).join("");
+}
+
+/* ---------- P3: 母语感知话术 ---------- */
+const SCRIPTS = {
+  "英语": { high:"别急，这一步卡住很正常。我们把目标拆成 3 个小点，先只搞定第 1 个——做完你就已经赢了。",
+            medium:"这个表达有点绕，我给你一个固定结构，套进去就不会错。",
+            low:"你掌握得不错，我们加点更地道的搭配。" },
+  "日语": { high:"無理に急がなくて大丈夫ですよ。一緒に少しずつ進めましょう、まずは易しいところから。",
+            medium:"この表現は少し難しいですね。例文を一つ見てみましょう。",
+            low:"よくできていますね。もう少し自然な言い方を足しましょう。" },
+  "韩语": { high:"너무 힘들어하지 마세요! 우리 같이 조금씩 해볼까요? 작은 목표 하나만 먼저 달성해요.",
+            medium:"이 표현은 헷갈리기 쉬워요. 예문 하나로 감잡아 볼게요.",
+            low:"잘하고 있어요! 조금 더 자연스러운 표현을 더해볼게요." },
+  "西班牙语": { high:"¡Tranquilo! Es normal bloquearse. Vamos paso a paso, primero solo este puntito.",
+            medium:"Esta frase es un poco enredada, te doy una estructura fija.",
+            low:"¡Va muy bien! Agreguemos expresiones más naturales." },
+  "法语": { high:"Pas de panique, c'est normal de bloquer. Décomposons en 3 étapes logiques, on commence par la première.",
+            medium:"Cette tournure est délicate, voici une structure à suivre.",
+            low:"Très bien ! Ajoutons des expressions plus élégantes." },
+};
+const OLD_GENERIC = "检测到准确率下降，已为你降低难度。请继续练习。";
+function runP3(){
+  const lang = document.getElementById('p3lang').value;
+  const anx = document.getElementById('p3anx').value;
+  document.getElementById('p3old').textContent = OLD_GENERIC + "\n（对所有母语/情绪一致，无语用差异）";
+  document.getElementById('p3new').textContent = SCRIPTS[lang][anx];
+}
+
+/* ---------- P4: A5 硬门控 ---------- */
+function runP4(){
+  const on = document.getElementById('p4gate').checked;
+  const stat = document.getElementById('p4stat');
+  stat.textContent = "A5 硬门控：" + (on?"开启":"关闭");
+  stat.style.color = on ? "var(--green)" : "var(--red)";
+
+  // 缓存路径
+  const cacheEl = document.getElementById('p4cache');
+  if(on){
+    cacheEl.className="result good";
+    cacheEl.textContent = "generateExercises: a5_joint.passed=false\n→ 拦截，降级为「已审核缓存版」/ 转完整链路重生成\n✅ 低质内容未触达用户";
+  } else {
+    cacheEl.className="result bad";
+    cacheEl.textContent = "generateExercises: a5_joint.passed=false\n→ 仅降 pipeline_confidence 遥测，仍 return final_result\n⚠️ 未过审练习题已触达用户（偶发低质根因）";
+  }
+  // 完整路径
+  const fullEl = document.getElementById('p4full');
+  if(on){
+    fullEl.className="result good";
+    fullEl.textContent = "a5Controller: is_qualified=false\n→ 硬门控拦截，A4 重生成并再过 A5\n✅ 入口网关零漏放";
+  } else {
+    fullEl.className="result bad";
+    fullEl.textContent = "a5Controller: is_qualified=false\n→ computePipelineStateUpdate 仅衰减置信度\n⚠️ 最终返回不判断，低质内容泄漏";
+  }
+}
+
+/* init */
+runP1(); runP2(); runP3(); runP4();
+</script>
+</body>
+</html>

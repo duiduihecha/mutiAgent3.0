@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "experiment-manifest.schema.json",
+  "title": "Experiment Run Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "experiment_id", "run_id", "stage", "research_questions", "timestamps", "conditions", "versions", "generation_config", "fairness", "counts", "cost", "artifacts", "approval"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "experiment_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "stage": {"enum": ["smoke", "pilot_generation", "pilot_judge", "formal_generation", "formal_judge", "local_reanalysis"]},
+    "research_questions": {"type": "array", "items": {"enum": ["RQ1", "RQ2", "RQ3", "supplemental"]}, "uniqueItems": true},
+    "timestamps": {
+      "type": "object", "additionalProperties": false, "required": ["started_at", "ended_at", "timezone"],
+      "properties": {"started_at": {"type": ["string", "null"]}, "ended_at": {"type": ["string", "null"]}, "timezone": {"type": "string"}}
+    },
+    "conditions": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+    "versions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["code_commit", "code_dirty", "source_archive_sha256", "dataset_version", "dataset_sha256", "case_list_sha256", "canonical_schema_version", "converter_sha256"],
+      "properties": {
+        "code_commit": {"type": ["string", "null"]}, "code_dirty": {"type": ["boolean", "null"]}, "source_archive_sha256": {"type": ["string", "null"]},
+        "dataset_version": {"type": "string"}, "dataset_sha256": {"type": "string"}, "case_list_sha256": {"type": "string"},
+        "canonical_schema_version": {"type": "string"}, "converter_sha256": {"type": "string"}
+      }
+    },
+    "generation_config": {
+      "type": "object", "additionalProperties": false,
+      "required": ["profile", "provider", "model", "model_version", "endpoint_id", "routing_sha256", "temperature", "top_p", "seed", "max_input_tokens", "max_output_tokens", "timeout_ms", "max_retries", "prompt_template_sha256"],
+      "properties": {
+        "profile": {"enum": ["daily", "quality"]},
+        "provider": {"type": "string"}, "model": {"type": "string"}, "model_version": {"type": ["string", "null"]}, "endpoint_id": {"type": "string"},
+        "routing_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "temperature": {"type": ["number", "null"]}, "top_p": {"type": ["number", "null"]}, "seed": {"type": ["integer", "null"]},
+        "max_input_tokens": {"type": ["integer", "null"]}, "max_output_tokens": {"type": "integer", "minimum": 1}, "timeout_ms": {"type": "integer", "minimum": 1},
+        "max_retries": {"type": "integer", "minimum": 0}, "prompt_template_sha256": {"type": "string"}
+      }
+    },
+    "fairness": {
+      "type": "object", "additionalProperties": false,
+      "required": ["primary_metric", "pair_tolerance_pct", "condition_mean_tolerance_pct", "passed", "notes"],
+      "properties": {
+        "primary_metric": {"const": "sum_prompt_plus_completion_tokens"}, "pair_tolerance_pct": {"type": "number", "minimum": 0},
+        "condition_mean_tolerance_pct": {"type": "number", "minimum": 0}, "passed": {"type": ["boolean", "null"]}, "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "counts": {
+      "type": "object", "additionalProperties": false, "required": ["planned_calls", "completed_calls", "failed_calls", "retry_calls"],
+      "properties": {"planned_calls": {"type": "integer", "minimum": 0}, "completed_calls": {"type": "integer", "minimum": 0}, "failed_calls": {"type": "integer", "minimum": 0}, "retry_calls": {"type": "integer", "minimum": 0}}
+    },
+    "cost": {
+      "type": "object", "additionalProperties": false, "required": ["budget_limit_cny", "estimated_cny", "actual_cny", "status"],
+      "properties": {"budget_limit_cny": {"type": "number", "minimum": 0}, "estimated_cny": {"type": ["number", "null"], "minimum": 0}, "actual_cny": {"type": ["number", "null"], "minimum": 0}, "status": {"enum": ["pricing_unconfigured", "estimated", "billed", "zero_cost"]}}
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {"type": "object", "additionalProperties": false, "required": ["path", "records", "sha256"], "properties": {"path": {"type": "string"}, "records": {"type": "integer", "minimum": 0}, "sha256": {"type": "string"}}}
+    },
+    "approval": {
+      "type": "object", "additionalProperties": false, "required": ["protocol_frozen_by", "execution_approved_by", "approved_at", "stop_reason"],
+      "properties": {"protocol_frozen_by": {"type": ["string", "null"]}, "execution_approved_by": {"type": ["string", "null"]}, "approved_at": {"type": ["string", "null"]}, "stop_reason": {"type": ["string", "null"]}}
+    }
+  }
+}

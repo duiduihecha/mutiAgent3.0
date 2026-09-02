@@ -1,0 +1,787 @@
+{
+  "_description": "跨文化维度映射配置 — 定义每个 KnowledgePoint 关联的 CulturalDimension 和 HomeCulture 表现",
+  "_version": "1.0",
+  "_note": "⚠️ HUMAN INPUT NEEDED — 请根据跨文化专业知识完善每个 KP 的维度评分和母语冲突描述。当前仅包含 food 和 workplace 两个 Domain 的骨架数据。",
+  "_dimension_ids_available": [
+    "dim_power_distance", "dim_individualism", "dim_masculinity",
+    "dim_uncertainty", "dim_long_term", "dim_indulgence",
+    "dim_high_context", "dim_proxemics", "dim_chronemics",
+    "dim_specific_diffuse", "dim_face_concern", "dim_reciprocity"
+  ],
+  "_home_culture_ids_available": [
+    "hc_zh", "hc_en", "hc_ja", "hc_ko", "hc_es", "hc_ar", "hc_ru", "hc_fr", "hc_th"
+  ],
+  "cultural_concepts": [
+    {
+    "concept_id": "kp_food_001",
+    "name": "抢买单与面子博弈",
+    "dimensions": [
+      {
+        "dimension_id": "dim_face_concern",
+        "weight": 0.9
+      },
+      {
+        "dimension_id": "dim_reciprocity",
+        "weight": 0.8
+      }
+    ],
+    "home_culture_manifestations": [
+      {
+        "culture_id": "hc_en",
+        "conflict_description": "习惯 AA 制（Go Dutch），认为各付各的是最公平且不侵犯边界的方式。看到中国人激烈抢买单会感到震惊甚至有攻击性；被强行请客会产生亏欠感。",
+        "pragmatic_tip": "遇到中国朋友抢买单，不必像在欧美那样坚持 AA，这会被认为是在‘见外’。你可以真诚道谢并说‘让你破费了，那下次我来请客’。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_ja",
+        "conflict_description": "平辈间习惯 AA 制（割り勘），前辈请后辈虽常见，但极少在台面上激烈争抢。中式的大声抢单会让日方觉得有失体面。",
+        "pragmatic_tip": "无需加入抢单战局，安静等待结果，若对方买单，在餐厅外或次日郑重致谢，并寻找机会回礼。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ko",
+        "conflict_description": "长辈或地位高者买单是常态，也能理解抢买单背后的面子文化，但韩国更倾向于按轮次请客（这次你请，去第二场我请）。",
+        "pragmatic_tip": "如果中方抢了第一场的单，顺势提议由自己邀请大家去第二场（如喝咖啡或去酒吧）即可。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_es",
+        "conflict_description": "同样重视热情好客，朋友间也会争相买单，但争抢程度通常不如中国激烈，且更易接受对方的好意。",
+        "pragmatic_tip": "用你的热情回应对方的请客，大方接受并赞美食物，承诺下次由你做东。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_ar",
+        "conflict_description": "阿拉伯文化极度重视好客（Karam），主人买单是天经地义的。但在公共场合大声争执可能被视作不够稳重。",
+        "pragmatic_tip": "尊重中国人的待客之道，若想买单可以私下提前结账，避免在餐桌上公开争抢。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ru",
+        "conflict_description": "在俄罗斯，邀请人通常负责买单，男女约会更是男方绝对买单。AA制会被认为小气，因此能理解中方买单，但可能不适应夸张的肢体拉扯。",
+        "pragmatic_tip": "欣然接受中方的请客，并可以回赠一些具有俄罗斯特色的小礼物以示感谢。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_fr",
+        "conflict_description": "法国人注重餐桌优雅，可能会轮流买单，但绝对反感在餐厅里大声喧哗和推搡。中式抢买单会被认为粗鲁。",
+        "pragmatic_tip": "优雅地表达感谢，不要参与肢体上的争抢，可提议分担酒水费用或下次请客。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_th",
+        "conflict_description": "受‘Kreng Jai’（体贴/不愿麻烦他人）文化影响，泰国人通常由最年长或最富有的人默默结账，对中式大声抢单感到不适。",
+        "pragmatic_tip": "保持微笑，双手合十表示感谢即可，不要用激烈的言辞或动作去争抢结账权。",
+        "severity": 2
+      }
+    ]
+  },
+  {
+    "concept_id": "kp_food_002",
+    "name": "劝酒文化与边界侵犯",
+    "dimensions": [
+      {
+        "dimension_id": "dim_power_distance",
+        "weight": 0.8
+      },
+      {
+        "dimension_id": "dim_individualism",
+        "weight": 0.9
+      }
+    ],
+    "home_culture_manifestations": [
+      {
+        "culture_id": "hc_en",
+        "conflict_description": "高度重视个人健康与自主权，认为饮酒是私人选择。面对中式‘不喝就是不给面子’的劝酒，会感到严重的边界侵犯和心理反感。",
+        "pragmatic_tip": "可以拿医疗原因（如过敏、吃药）做挡箭牌，这是中方最能接受的拒酒理由，同时以茶代酒表达敬意。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_ja",
+        "conflict_description": "日本职场（饮み会）也有严密的敬酒规则，但近年来对强迫饮酒（アルハラ）非常抵触。能够理解中式的劝酒动机，但内心会有压力。",
+        "pragmatic_tip": "适度配合碰杯，可以小口抿而不需每次干杯（一口闷），若真不能喝需尽早委婉表明立场。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ko",
+        "conflict_description": "韩国会餐（회식）文化中同样存在长辈/上司倒酒必须喝的规则，因此对中国劝酒文化的底层逻辑完全能够适应。",
+        "pragmatic_tip": "遵循中式碰杯礼仪（如酒杯低于长辈），若酒量不佳可坦诚说明，韩国与中国在酒桌文化上摩擦较小。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_es",
+        "conflict_description": "拉美和西班牙人喜欢饮酒狂欢，但喝酒是为了开心，而非用来测试忠诚度或服从性，对强迫性的‘干杯’感到不解。",
+        "pragmatic_tip": "保持幽默感，用热情的语言化解劝酒压力，举杯参与气氛但按照自己的节奏饮酒。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ar",
+        "conflict_description": "伊斯兰教义严格禁酒，劝酒是对其信仰的严重冒犯。中方若不知情强行劝酒，会导致关系的瞬间破裂。",
+        "pragmatic_tip": "必须在餐前明确告知自己的宗教信仰禁忌。中方主人通常会立刻理解并提供果汁或茶水。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_ru",
+        "conflict_description": "俄罗斯同样有着极其浓厚的烈酒文化，且祝酒辞环节必不可少。通常能与中国劝酒文化‘硬碰硬’，甚至反客为主。",
+        "pragmatic_tip": "这是少数能无缝融入中式酒局的文化，但需注意中方饮酒多为社交服从，而俄方多为追求微醺/醉酒状态，注意控制节奏。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_fr",
+        "conflict_description": "法国人将葡萄酒视为品鉴的艺术，极其反感将好酒‘一口闷’（干杯）的糟蹋行为，认为这是缺乏品味的体现。",
+        "pragmatic_tip": "向中国朋友解释法国的品酒文化，说明小口品尝是对佳酿的尊重，以此巧妙避开‘干杯’的要求。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_th",
+        "conflict_description": "泰国人喜欢在社交场合喝加冰的啤酒或威士忌，气氛轻松，没有以酒量测试忠诚度的习惯，对施压式劝酒感到恐惧。",
+        "pragmatic_tip": "双手合十微笑婉拒，表达自己酒量有限。泰国人的温和态度通常能软化中方的强硬劝酒。",
+        "severity": 2
+      }
+    ]
+  },
+  {
+    "concept_id": "kp_food_003",
+    "name": "座次排列与权力距离",
+    "dimensions": [
+      {
+        "dimension_id": "dim_power_distance",
+        "weight": 0.9
+      },
+      {
+        "dimension_id": "dim_high_context",
+        "weight": 0.7
+      }
+    ],
+    "home_culture_manifestations": [
+      {
+        "culture_id": "hc_en",
+        "conflict_description": "习惯长桌宴或随意就座，认为桌子两端是主人位，对中式圆桌‘面门为尊、左高右低’的严密权力映射毫无概念。",
+        "pragmatic_tip": "在正式中餐场合，千万不要一进门就随便坐下。请等待主人或接待人员引导就座。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_ja",
+        "conflict_description": "日本同样有极其严格的‘上座’（Kamiza）与‘下座’（Shimoza）文化，且基本原则相似（远离门为尊），容易理解中方逻辑。",
+        "pragmatic_tip": "留意中方主人的引导。中日座次在大原则上相通，只需注意圆桌与日式榻榻米长桌在几何分布上的细微差异。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_ko",
+        "conflict_description": "韩国也尊崇儒家思想，长辈和上级理应坐在最舒适、视线最好的位置，不会产生文化抵触。",
+        "pragmatic_tip": "遵循尊长原则，主动将面朝门的中心位置留给长辈或职位最高者即可。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_es",
+        "conflict_description": "家庭聚餐中长辈可能坐在主位，但整体权力距离中等，职场聚餐相对随意，对严苛的左右排序感到迷茫。",
+        "pragmatic_tip": "把这视作一种有趣的仪式，主动询问‘我应该坐在哪里？’既表现了尊重，也能避免坐错位置的尴尬。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ar",
+        "conflict_description": "阿拉伯文化尊重长者和贵客，通常会有专门的贵宾席，但具体排列规则与中国不同，可能因无意坐错而尴尬。",
+        "pragmatic_tip": "客随主便，跟随主人的指引。阿拉伯人也是好客之邦，中方主人通常会主动安排贵宾就座主客位。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ru",
+        "conflict_description": "俄罗斯人在正式场合也有主宾之分，但没有中式圆桌如此精细的等级量化（如一主二宾三陪）。",
+        "pragmatic_tip": "作为外宾，大概率会被邀请坐在主人的右侧（副主宾位），客气接受并感谢主人的重视。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_fr",
+        "conflict_description": "法国正式晚宴讲究男女间隔就座，主人坐在长桌中间或两头。中式按官衔/权力排座会让法国人觉得过于政治化。",
+        "pragmatic_tip": "理解这是中国建立社交秩序的方式，入乡随俗等待安排，不要因为不能和自己亲密的朋友坐在一起而抱怨。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_th",
+        "conflict_description": "泰国社会阶级观念强，十分尊重王室、僧侣和长辈，因此很容易理解并顺从基于地位的座次安排。",
+        "pragmatic_tip": "保持谦逊，让职位更高的人先落座。若被中方奉为上宾推让主位，可稍作推辞后接受。",
+        "severity": 1
+      }
+    ]
+  },
+  {
+    "concept_id": "kp_food_004",
+    "name": "合餐制与个人选择权",
+    "dimensions": [
+      {
+        "dimension_id": "dim_individualism",
+        "weight": 0.8
+      },
+      {
+        "dimension_id": "dim_specific_diffuse",
+        "weight": 0.7
+      }
+    ],
+    "home_culture_manifestations": [
+      {
+        "culture_id": "hc_en",
+        "conflict_description": "习惯分餐制（各自点菜各自吃），对用自己的筷子夹公共菜肴有严重卫生焦虑；主人主动夹菜更被视为剥夺个人饮食选择权。",
+        "pragmatic_tip": "可以请求餐厅提供公筷（Public chopsticks）。若主人用私筷夹菜，可礼貌道谢并将菜放在盘子边缘不吃。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_ja",
+        "conflict_description": "日本虽有共享锅物（如寿喜烧），但大多实行定食（分餐）。对中方在盘子里搅动或用私筷为客人夹菜感到卫生上的不适。",
+        "pragmatic_tip": "理解这是中方表达亲近的方式（视你为自己人），但完全可以主动提出使用公筷，中方通常会理解外国人的习惯。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ko",
+        "conflict_description": "韩国饮食文化中有共饮一锅汤或共食配菜的习惯，对合餐制的接受度极高，无明显文化冲突。",
+        "pragmatic_tip": "享受合餐的氛围即可。韩国人与中国人在分享食物上的心理边界非常相似。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_es",
+        "conflict_description": "有分享Tapas的文化，对共享食物不排斥。但主人强行把食物塞进客人的盘子里会让人略感惊讶。",
+        "pragmatic_tip": "拉美人天性热情，可以把主人的夹菜看作是分享最美味部分的慷慨，吃不下可以直接笑着说饱了。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ar",
+        "conflict_description": "传统阿拉伯地区也有手抓饭共享大盘食物的习俗，对合餐制并不陌生。但饮食禁忌（清真）较多，别人盲目夹菜易踩雷。",
+        "pragmatic_tip": "在用餐前务必重申清真（Halal）需求，这样中方主人在夹菜时就会避开敏感食物。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ru",
+        "conflict_description": "习惯分餐制，前菜（如沙拉）可能是共享的，但主菜是独立的。对中方无休止地转动转盘和夹菜需要适应过程。",
+        "pragmatic_tip": "不用强迫自己吃完别人夹的所有食物，留一点在盘子里也能暗示你已经吃饱了。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_fr",
+        "conflict_description": "极其重视个人的菜品搭配和用餐节奏，认为共享一堆菜肴会串味，破坏美食体验；夹菜行为被视为粗鲁干涉。",
+        "pragmatic_tip": "可以委婉表示自己想慢慢品尝每一道菜，或者主动用公勺舀少许食物到自己盘中，掌握主动权。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_th",
+        "conflict_description": "泰国也是典型的合餐制国家，大家共享中间的菜肴，使用公勺分菜，因此对中国合餐模式非常适应。",
+        "pragmatic_tip": "如果遇到不用公勺的情况，可以礼貌地向服务员索要，这在现代中国餐厅也越来越普遍，不会冒犯主人。",
+        "severity": 1
+      }
+    ]
+  },
+  {
+    "concept_id": "kp_food_005",
+    "name": "“客气”推拉与高语境表达",
+    "dimensions": [
+      {
+        "dimension_id": "dim_high_context",
+        "weight": 0.9
+      },
+      {
+        "dimension_id": "dim_face_concern",
+        "weight": 0.8
+      }
+    ],
+    "home_culture_manifestations": [
+      {
+        "culture_id": "hc_en",
+        "conflict_description": "低语境文化，Yes就是Yes，No就是No。面对中方的让菜，老外直接说‘不’会被视为冷漠无礼；而主人再三劝食会让老外觉得没被尊重听取。",
+        "pragmatic_tip": "理解中国人的‘劝食’是尽地主之谊。如果你真的不想吃，可以说‘食物很棒，但我实在吃不下了’并配合夸张的肢体语言。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_ja",
+        "conflict_description": "同属高语境文化，日本有建前（客套）和本音（真心话），能理解推拉艺术，但日本的‘辞让’通常不会像中国那样反复拉扯数个回合。",
+        "pragmatic_tip": "如果想拒绝，顺应中式的节奏多推辞两次，态度温和但坚定；如果想接受，可以在推辞一次后顺势表示‘那我就不客气了’。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_ko",
+        "conflict_description": "韩国同样重视体面和客套，推辞一两次是常规礼仪，对这种交际推拉模式非常熟悉。",
+        "pragmatic_tip": "按照亚洲高语境的常规习惯处理即可，中韩在客套拉扯的尺度上高度一致。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_es",
+        "conflict_description": "比较直接和热情，想要就说要，不要就说不要。但因为性格外向，即使遇到反复劝食，也多用玩笑化解，不易产生深度反感。",
+        "pragmatic_tip": "用你的热情和肢体语言大方回应，如果实在不需要，可以拍拍肚子笑着说‘真的装不下了’。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ar",
+        "conflict_description": "阿拉伯文化中主人也会反复劝客多吃，这被称为表达诚意。所以对中式的再三劝食非但不反感，反而觉得亲切。",
+        "pragmatic_tip": "这与阿拉伯的待客之道非常相似，顺其自然地享受这种热情即可。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_ru",
+        "conflict_description": "俄罗斯人直来直去，如果说不想吃就是真不想吃。中方反复劝食会让俄方觉得啰嗦，而俄方的直接拒绝会让中方觉得不给面子。",
+        "pragmatic_tip": "中方主人并非不尊重你的意愿，而是在展示‘不怠慢客人’。你可以用坚定的眼神直视对方说感谢并拒绝。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_fr",
+        "conflict_description": "法国人注重逻辑和直接表达，认为客套推拉是虚伪浪费时间。如果他们说No，就是终局，再劝会被视为冒犯。",
+        "pragmatic_tip": "在了解这是中式修辞的基础上，不要把主人的再三劝食当成强迫，用幽默的方式（如‘你想让我变胖吗’）化解即可。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_th",
+        "conflict_description": "泰国人注重平和（Jai Yen），不习惯激烈的推拉场面，面对中方强烈的劝食可能会不知所措地微笑附和。",
+        "pragmatic_tip": "保持你的泰式微笑，这是最好的缓冲剂。双手合十感谢并微笑着将盘子推远一点即可。",
+        "severity": 2
+      }
+    ]
+  },
+  {
+    "concept_id": "kp_food_006",
+    "name": "餐桌禁忌与谐音文化",
+    "dimensions": [
+      {
+        "dimension_id": "dim_uncertainty",
+        "weight": 0.8
+      },
+      {
+        "dimension_id": "dim_high_context",
+        "weight": 0.7
+      }
+    ],
+    "home_culture_manifestations": [
+      {
+        "culture_id": "hc_en",
+        "conflict_description": "缺乏关于筷子的认知图式，常因好玩将筷子竖插在饭里，或因方便而用筷子敲碗，完全不知道这触发了中方关于‘祭祀’和‘乞讨’的心理忌讳。",
+        "pragmatic_tip": "记住几个硬规则：永远不要把筷子直立插在饭中；不要用筷子指人；不要用筷子敲击碗盘。不求甚解，遵守即可。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_ja",
+        "conflict_description": "日本同样有‘迷い箸’（犹豫不决）、‘刺し箸’（插食物）等严格的筷子禁忌，且筷子竖插（仏箸）同样是大忌，完全能共情。",
+        "pragmatic_tip": "保持日式良好的用筷习惯即可，但需注意中方可能对‘分梨’（分离）等特有的语言谐音禁忌比较敏感。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_ko",
+        "conflict_description": "韩国传统上也忌讳筷子插饭。但韩国习惯将汤匙和筷子并用，且通常不端起饭碗吃，这与中国端碗吃饭的习惯不同。",
+        "pragmatic_tip": "避开插筷子等死亡相关禁忌即可。了解中国人端碗吃饭是正常的，并非像韩国长辈认为的那样是‘乞丐相’。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_es",
+        "conflict_description": "将餐具视作单纯的工具，对赋予餐具鬼神或谐音意义感到新奇甚至荒谬。可能会无意中做出禁忌动作。",
+        "pragmatic_tip": "如果在餐桌上不小心犯了忌讳（如筷子掉落），只需微笑着说抱歉。中国人对外国人的无心之过通常非常宽容。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ar",
+        "conflict_description": "传统用手或刀叉进食，对筷子禁忌毫无概念。且不理解中文里‘梨-离’、‘钟-终’的谐音迷信。",
+        "pragmatic_tip": "不懂不要紧，观察其他中国人的做法。如果有中国人制止你竖插筷子，立刻拔出并道歉即可。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ru",
+        "conflict_description": "俄罗斯自身也有迷信（如不能隔着门槛握手），所以能理解忌讳文化，但不知道中国具体的餐桌规则。",
+        "pragmatic_tip": "可以把这些禁忌当作有趣的风俗来学习，当被提醒时，展现出好奇和尊重的态度。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_fr",
+        "conflict_description": "法国有刀叉语言（摆放代表对食物的评价），但没有涉及生死鬼神的餐具禁忌。可能会觉得中式禁忌过于迷信。",
+        "pragmatic_tip": "尊重他人的文化禁忌。当筷子不用时，平放在筷架或碗边是全球中餐厅通用的最安全做法。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_th",
+        "culture_id": "hc_th",
+        "conflict_description": "泰国是多神信仰国家，民间迷信极多，极易理解并尊重他国对不吉利事物的避讳。",
+        "pragmatic_tip": "泰国用叉匙较多，使用筷子时只需注意不要乱指乱插。对于谐音禁忌，听过记住即可。",
+        "severity": 1
+      }
+    ]
+  },
+  {
+    "concept_id": "kp_work_001",
+    "name": "称呼语与权力距离",
+    "dimensions": [
+      {
+        "dimension_id": "dim_power_distance",
+        "weight": 0.9
+      },
+      {
+        "dimension_id": "dim_face_concern",
+        "weight": 0.7
+      }
+    ],
+    "home_culture_manifestations": [
+      {
+        "culture_id": "hc_en",
+        "conflict_description": "西方职场极力扁平化，崇尚直呼 First Name 以拉近距离。在中国职场直呼领导名字（尤其是中文全名）会被视为严重挑衅和不懂规矩。",
+        "pragmatic_tip": "永远使用‘姓 + 职务’（如 Director Wang, 王总）。除非对方主动要求‘Please call me Peter’，否则千万别直呼其名。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_ja",
+        "conflict_description": "日本职场权力距离同样大，严格使用‘姓+役职’（如部长、社长）。完全适应中方称呼逻辑，甚至会觉得中方省略敬语后缀相对随意。",
+        "pragmatic_tip": "沿用日本的称呼逻辑，用职务称呼中国领导即可，中日在此方面高度契合。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_ko",
+        "conflict_description": "韩国职场阶级极其森严，称呼必须加上‘님’（Nim，尊称）。完全理解中式职务称呼法，甚至觉得中国职场更放松。",
+        "pragmatic_tip": "用对待韩国上司的尊敬态度对待中国领导，准确称呼其头衔，沟通非常顺畅。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_es",
+        "conflict_description": "拉丁文化人际关系相对随性，虽然尊重老板，但往往很快过渡到直呼其名以示亲近。",
+        "pragmatic_tip": "收敛过度的热情，在中国职场，建立信任不等于可以抛弃职务称呼。保持尊称是维持专业形象的关键。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ar",
+        "conflict_description": "阿拉伯地区高度尊重权力和地位，习惯使用长串尊称或头衔（如 Sheikh, Manager）。理解并适应称呼头衔的规则。",
+        "pragmatic_tip": "记住对方的最高职务并用来称呼。中东人和中国人在维护领导体面上很容易达成共识。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_ru",
+        "conflict_description": "俄罗斯职场传统上使用‘名字+父称’表示尊敬，虽然格式不同，但对上下级之间的正式称谓边界感有深刻认知。",
+        "pragmatic_tip": "将‘名字+父称’的尊重感转移到‘姓+职务’上，不要在中方未同意时随意使用昵称（小名）。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_fr",
+        "conflict_description": "法国有区分‘你’（tu）和‘您’（vous）的严格语法规则，对上下级边界有清晰认知，但现代企业中直呼其名变多。",
+        "pragmatic_tip": "在摸清对方公司文化前，统一使用 Monsieur/Madame 加上姓氏，或者职务，保持法式的礼貌距离即可。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_th",
+        "conflict_description": "泰国人习惯在名字前加‘Khun’（昆）表示尊敬，且职场等级分明。能自然接受中式的尊称要求。",
+        "pragmatic_tip": "用对待泰国上级的谦卑态度对应中方职务称呼，注意中国是‘姓’在前而泰国是‘名’在前。",
+        "severity": 1
+      }
+    ]
+  },
+  {
+    "concept_id": "kp_work_002",
+    "name": "含蓄拒绝与“考虑一下”",
+    "dimensions": [
+      {
+        "dimension_id": "dim_high_context",
+        "weight": 0.9
+      },
+      {
+        "dimension_id": "dim_face_concern",
+        "weight": 0.8
+      }
+    ],
+    "home_culture_manifestations": [
+      {
+        "culture_id": "hc_en",
+        "conflict_description": "低语境文化，听不懂潜台词。把中方的‘我们再研究一下’当成真实的业务流程，持续发邮件跟进，导致中方厌烦，外方觉得中方效率低下。",
+        "pragmatic_tip": "当中国人说‘原则上可以’或‘我再考虑一下’且没有给出具体时间表时，基本等于拒绝。请准备备选方案，不要逼迫对方说No。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_ja",
+        "conflict_description": "日本有经典的‘前向きに検討します’（积极探讨），其本质也是委婉拒绝，因此中日在这点上如同心电感应，毫无沟通障碍。",
+        "pragmatic_tip": "正常发挥高语境读空气（空気を読む）的能力即可，中方说‘研究一下’就不用再逼问了。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_ko",
+        "conflict_description": "韩国职场同样强调不伤面子，常用委婉语缓冲拒绝，能迅速捕捉到中方‘拖延即拒绝’的信号。",
+        "pragmatic_tip": "凭借东亚文化直觉行事，当对方不主动推进时，就意味着此事已搁置，保持良好态度体面退场即可。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_es",
+        "conflict_description": "虽然也有人情味，但业务上相对直白。如果不答应会给出具体理由。对中方的模棱两可会感到困惑。",
+        "pragmatic_tip": "不要把‘下次一定’当成承诺。如果一周内没有实质性进展，说明对方意愿很低，不要产生不切实际的期待。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ar",
+        "conflict_description": "阿拉伯文化中直接拒绝也被认为是不礼貌的，常说‘Insha'Allah’（如果真主意愿），这与中方‘考虑一下’异曲同工。",
+        "pragmatic_tip": "你能理解这种拖延式的礼貌，但要区分对方是真的需要走审批流程，还是在给双方找台阶下。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_ru",
+        "conflict_description": "典型的直接沟通文化。俄罗斯人说话直截了当，行就行，不行就不行。对中方的含糊其辞极度没有耐心，认为是不真诚甚至欺骗。",
+        "pragmatic_tip": "压住火气，理解这并非欺骗，而是中国文化中认为‘当面拒绝是撕破脸’。学会听弦外之音。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_fr",
+        "conflict_description": "喜欢辩论，如果不行，法国人倾向于解释为什么不行。中方为了保全面子而不给理由的拖延，会被法国人视为缺乏专业能力或决策力。",
+        "pragmatic_tip": "不要追问‘为什么不’。中方不愿当面挑破，如果对方沉默或转移话题，说明大门已关。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_th",
+        "conflict_description": "极其注重和谐，泰国人很少直接说No，常用‘Mai Pen Rai’（没关系/随他去）回避冲突。完全理解中式婉拒。",
+        "pragmatic_tip": "中泰双方都害怕正面冲突，因此沟通极度顺畅。对方语气稍有犹豫，就自然切换话题即可。",
+        "severity": 1
+      }
+    ]
+  },
+  {
+    "concept_id": "kp_work_003",
+    "name": "送礼的时机与合规边界",
+    "dimensions": [
+      {
+        "dimension_id": "dim_reciprocity",
+        "weight": 0.9
+      },
+      {
+        "dimension_id": "dim_specific_diffuse",
+        "weight": 0.7
+      }
+    ],
+    "home_culture_manifestations": [
+      {
+        "culture_id": "hc_en",
+        "conflict_description": "欧美有严格的反贿赂法（如FCPA）和企业合规政策。中方为了‘拉近关系’在非特定时间赠送贵重礼品，会让外企员工极度恐慌并上报合规部门。",
+        "pragmatic_tip": "若在中国经商，送礼只能选择节日，且必须是低价值的文化纪念品。面对中方贵重礼物，坚决但礼貌地以‘公司政策’为由拒收。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_ja",
+        "conflict_description": "日本有深厚的送礼（赠答）文化（如中元节、岁暮），但注重包装和形式，不在乎价值昂贵，且极度看重‘回礼’。对中方送重金礼品会有心理负担。",
+        "pragmatic_tip": "接受礼物后，务必记录并在合适时机回赠等价或稍低价值的礼物。不要当着中方面立刻拆开礼物（除非被特别要求）。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ko",
+        "conflict_description": "韩国职场虽有送礼习惯，但受《金英兰法》（反腐败法）严格限制。面对中国动辄高价的礼品盒或烟酒，会感到害怕触法。",
+        "pragmatic_tip": "如果涉及公职或媒体人员，严词拒绝。商业往来中，说明韩国法律限制，对方通常会理解并收回高价礼物。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_es",
+        "conflict_description": "拉美地区职场规则相对灵活，对送礼拉关系有一定接受度，但中式文化中的避讳（如不送钟表、绿帽子）会让他们不小心踩雷。",
+        "pragmatic_tip": "收礼时表现出感激。如果在给中国人送礼，千万避开钟（谐音送终）、伞（谐音散）、绿帽子等文化雷区。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ar",
+        "conflict_description": "阿拉伯商人喜欢互赠礼物以显示慷慨，但严格禁止涉及酒精或非清真的物品。如果中方送了名贵白酒，将引发严重冒犯。",
+        "pragmatic_tip": "确保中方知道你的禁忌。你也可以送给中方椰枣或其他中东特产作为建立信任的纽带。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ru",
+        "conflict_description": "俄罗斯职场送礼很普遍（尤其在妇女节等），且喜欢送名酒或巧克力。能适应中式送礼，但在时机把握上不如中国精细。",
+        "pragmatic_tip": "中俄在这方面契合度较高，送一瓶上好的伏特加给中方男性领导通常会受到欢迎。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_fr",
+        "conflict_description": "法国人送礼讲究品味（书籍、红酒），而非价格。对中式赤裸裸的‘价值展示’（如厚重金器、名贵烟草）感到俗气且具有行贿嫌疑。",
+        "pragmatic_tip": "把送礼控制在‘感谢’的范畴，而非‘交易’。遇到中方送礼，可礼貌说明公司规定仅限收受小额纪念品。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_th",
+        "conflict_description": "泰国职场送礼常见（如新年送果篮），但价值通常不高。理解中方送礼建立关系的意图，不会过度排斥。",
+        "pragmatic_tip": "顺应这种建立‘关系’（Guanxi）的方式，回赠一些具有泰国特色的工艺品或高级水果即可。",
+        "severity": 1
+      }
+    ]
+  },
+  {
+    "concept_id": "kp_work_004",
+    "name": "会议沉默与发言序列",
+    "dimensions": [
+      {
+        "dimension_id": "dim_power_distance",
+        "weight": 0.9
+      },
+      {
+        "dimension_id": "dim_high_context",
+        "weight": 0.7
+      }
+    ],
+    "home_culture_manifestations": [
+      {
+        "culture_id": "hc_en",
+        "conflict_description": "习惯头脑风暴，认为开会就该全员发言。西方下属若看到中国下属全程沉默，会认为他们缺乏能力或不敬业；若西方人抢中国老板的话，会被视为造反。",
+        "pragmatic_tip": "中国会议往往是‘宣布决定’而非‘讨论问题’。尊重‘尊者先言’，不要在公开会议上直接反驳中国领导。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_ja",
+        "conflict_description": "日本会议（根回し）同样是为了确认共识而非辩论，下属极少在大会上反驳上级，完全契合中方会议逻辑。",
+        "pragmatic_tip": "按照日式读空气的习惯开会即可，重大分歧留到会后的私下沟通中解决。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_ko",
+        "conflict_description": "韩国绝对遵循长幼尊卑，下属在会议上基本是记录者。对中方会议上的层级秩序非常习惯。",
+        "pragmatic_tip": "保持倾听，上级不点名不主动发表异议，中韩在会议纪律上如出一辙。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_es",
+        "conflict_description": "开会容易跑题，大家七嘴八舌讨论热烈。可能会对中国会议的严肃和单向输出感到压抑。",
+        "pragmatic_tip": "抑制随时插嘴的冲动。如果需要表达不同意见，先肯定领导的发言，再委婉提出补充。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ar",
+        "conflict_description": "阿拉伯会议往往由核心权威掌控节奏，其他人附和。因此容易理解并遵守中国领导主导会议的模式。",
+        "pragmatic_tip": "给予中方最高领导足够的尊重，在其发言时保持专注倾听，这会为你赢得极大好感。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_ru",
+        "conflict_description": "领导具有绝对权威（一言堂），但如果有技术分歧，俄罗斯工程师可能也会直接在会上跟老板吵起来。偶尔会突破中式的面子底线。",
+        "pragmatic_tip": "即使你是技术专家，也不要在大会上让中国领导下不来台。给领导留面子，问题可以在会下解决。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_fr",
+        "conflict_description": "法国人极度热爱批判性思维和辩论。如果在会议上大家都保持沉默，法国人会觉得这是极低质量的会议，并可能主动挑起争议。",
+        "pragmatic_tip": "收起法式辩论欲。在中国，公开会议上的挑战等同于质疑对方的权威，这会彻底破坏合作基础。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_th",
+        "conflict_description": "泰国人极力避免冲突，在会议上通常微笑点头，即使不赞同也保持沉默。与中国会议下属的沉默模式完美契合。",
+        "pragmatic_tip": "微笑和沉默在这里是通用的通行证，如果有分歧，依靠私下关系网去传递信息。",
+        "severity": 1
+      }
+    ]
+  },
+  {
+    "concept_id": "kp_work_005",
+    "name": "微信办公与公私边界",
+    "dimensions": [
+      {
+        "dimension_id": "dim_specific_diffuse",
+        "weight": 0.9
+      },
+      {
+        "dimension_id": "dim_individualism",
+        "weight": 0.8
+      }
+    ],
+    "home_culture_manifestations": [
+      {
+        "culture_id": "hc_en",
+        "conflict_description": "界限分明（Specific），工作用邮件/Teams，下班即失联。对中方用私人微信谈工作、且要求晚上/周末秒回感到强烈愤怒和被剥削。",
+        "pragmatic_tip": "理解这是中国‘关系即业务’的延伸。如实在不想被侵占生活，可注册一个工作专用的微信号，并设置免打扰时段，但要提前沟通好紧急联系方式。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_ja",
+        "conflict_description": "日本同样加班严重，但倾向于公私分明，LINE主要用于私人，工作仍依赖邮件。对微信办公的即时性感到压迫，但不敢直接反抗。",
+        "pragmatic_tip": "微信在中国等同于‘邮件+电话’。适应这种高频节奏，回复不用像日文邮件那么冗长讲究，简短快速即可。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ko",
+        "conflict_description": "韩国职场早已习惯KakaoTalk办公和下班后的上司夺命连环call，对微信办公的公私模糊不仅能适应，甚至习以为常。",
+        "pragmatic_tip": "完全没有文化门槛，像对待韩国上司的Kakao消息一样，快速回复‘收到’即可。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_es",
+        "conflict_description": "虽然他们也会用WhatsApp谈工作，但周末是神圣的家庭/派对时间，绝不谈工作。如果中方周末发微信派活，会被无视。",
+        "pragmatic_tip": "不必强迫自己周末秒回，但可以在周一早上热情地回复并解释周末在陪伴家人，中方通常能理解外国人的习惯。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ar",
+        "conflict_description": "也会用WhatsApp沟通，且人情社会属性强，公私界限不明显。但对祷告时间或周五（休息日）被打扰会感到不悦。",
+        "pragmatic_tip": "向中方说明你的宗教休息日和祷告时间，中方对宗教习惯通常持有高度的敬畏和包容。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ru",
+        "conflict_description": "工作和生活分得较开。如果在假期（如漫长的新年）被微信轰炸，脾气暴躁的俄罗斯人可能会直接拉黑对方。",
+        "pragmatic_tip": "在节假日前，通过微信明确告知中方自己的休假安排，并指定代办人，建立防火墙。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_fr",
+        "conflict_description": "法国有法定的‘断联权’（Right to disconnect）。下班后的工作微信在法国人眼里是违反劳动法的恶劣行径，引发极度反感。",
+        "pragmatic_tip": "坚守你的边界，可以礼貌但坚定地告知中方：‘我很乐意在明天早上9点一上班就处理这个紧急事项’。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_th",
+        "culture_id": "hc_th",
+        "conflict_description": "泰国生活节奏慢（Sabai Sabai），广泛使用LINE。对中方微信的高压催促会感到焦虑，可能会选择‘已读不回’来逃避压力。",
+        "pragmatic_tip": "如果觉得压力大，不要直接消失，可以回复一个泰式的可爱表情包缓冲，然后说明需要一点时间处理。",
+        "severity": 2
+      }
+    ]
+  },
+  {
+    "concept_id": "kp_work_006",
+    "name": "面子保护与间接反馈",
+    "dimensions": [
+      {
+        "dimension_id": "dim_face_concern",
+        "weight": 0.9
+      },
+      {
+        "dimension_id": "dim_high_context",
+        "weight": 0.8
+      }
+    ],
+    "home_culture_manifestations": [
+      {
+        "culture_id": "hc_en",
+        "conflict_description": "习惯直接、建设性的反馈（尤其是美国）。老外直截了当地指出中国员工的错误，会导致对方严重丢面子甚至辞职；反之，老外听不懂中式委婉批评。",
+        "pragmatic_tip": "批评中国员工时务必私下进行，并先肯定其苦劳。听中方反馈时，注意‘但是’后面的话才是核心，前面的表扬是铺垫。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_ja",
+        "conflict_description": "同样极度依赖间接反馈和保全面子。能够完美识别中式评价中‘需要提升’的潜台词，沟通毫无阻碍。",
+        "pragmatic_tip": "继续运用日式职场的委婉沟通术，中日在这方面是完美的同盟。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_ko",
+        "conflict_description": "韩国上司脾气暴躁时可能会直接训斥下属，但在平级或跨部门沟通中仍极其注重面子。能轻易理解中方的反馈模式。",
+        "pragmatic_tip": "在中国，即便是上司对下属，公开辱骂也是大忌，请收敛韩企中可能存在的家长式斥责，改用点到为止的批评。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_es",
+        "conflict_description": "性格直接但情感丰富，批评时也会顾及人情，但不如中国那样九曲十八弯。可能会错把中方客套的表扬当成真的绩效优秀。",
+        "pragmatic_tip": "仔细体会中方话语中的转折词，不要被前面的糖衣炮弹迷惑，关注那些‘微小的建议’，那才是真实意图。",
+        "severity": 2
+      },
+      {
+        "culture_id": "hc_ar",
+        "conflict_description": "面子（Wajh）在阿拉伯文化中生死攸关，公开批评会被视为极大侮辱。因此完全赞同并适应中方的私下、委婉反馈法。",
+        "pragmatic_tip": "在维护彼此尊严方面，你们的直觉是相通的，保持私下沟通是解决问题的金钥匙。",
+        "severity": 1
+      },
+      {
+        "culture_id": "hc_ru",
+        "conflict_description": "俄罗斯人崇尚力量和直白，批评往往非常尖锐刺耳，认为‘委婉就是虚伪’。他们的直接纠错常把中国同事怼得下不来台。",
+        "pragmatic_tip": "请务必克制直来直去的脾气。在指出中国同事错误前，先深呼吸，加上一句‘你做得很辛苦，不过有一点小问题’。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_fr",
+        "conflict_description": "法国教育体系鼓励负面反馈（找错），他们认为批评是对事不对人。中方受不了法式的尖锐批评，法方认为中方太玻璃心。",
+        "pragmatic_tip": "在中国，没有绝对的‘对事不对人’。你的直接批评会被认为是针对他个人的攻击。请学会使用‘三明治法则’（表扬-批评-鼓励）。",
+        "severity": 3
+      },
+      {
+        "culture_id": "hc_th",
+        "conflict_description": "极其害怕得罪人（Kreng Jai），反馈甚至比中国人还要委婉和模糊。完全适应这种面子保护机制，绝不会发生公开冲突。",
+        "pragmatic_tip": "有时候过于委婉会导致工作推进缓慢，但在维护关系层面，中泰双方的步调非常一致，顺其自然即可。",
+        "severity": 1
+      }
+    ]
+      
+    }
+  ]
+}

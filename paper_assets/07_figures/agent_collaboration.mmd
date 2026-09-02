@@ -1,0 +1,26 @@
+graph LR
+    START((START)) --> CC[checkCache 缓存检查]
+    CC -->|cache_hit 命中| GE[generateExercises 仅生成练习题]
+    CC -->|cache_miss 未命中| A1[a1Profiler 画像建模]
+    A1 --> A2[a2Explainer 母语阐释]
+    A1 --> A3[a3Comparator 跨文化对比]
+    A2 --> G1{{verifyA2Translation 回译裁判}}
+    A3 --> G2{{verifyA3Comparison 客观性裁判}}
+    A2 --> Merge[mergeA2A3 汇聚]
+    A3 --> Merge
+    Merge --> A4[a4Generator 教案生成]
+    A4 --> G3{{verifyA4Solver 对抗盲测}}
+    A4 --> G4{{preA5HardRules 硬规则}}
+    A4 --> G5{{verifyA4Grounding 交叉校验}}
+    A4 --> A5[a5Controller 质量审核]
+    A5 --> G6{{verifyA5JointArbitration 联席仲裁}}
+    A5 --> Save[saveKB 写缓存]
+    GE --> Save
+    Save --> END((END))
+
+    style G1 fill:#f96,stroke:#333,stroke-width:2px
+    style G2 fill:#f96,stroke:#333,stroke-width:2px
+    style G3 fill:#f96,stroke:#333,stroke-width:2px
+    style G4 fill:#f96,stroke:#333,stroke-width:2px
+    style G5 fill:#f96,stroke:#333,stroke-width:2px
+    style G6 fill:#f96,stroke:#333,stroke-width:2px

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "hc_en",
+    "name": "英语圈",
+    "name_en": "Anglophone",
+    "regions": "美国、英国、加拿大、澳大利亚、新西兰等",
+    "general_traits": "低权力距离、高个人主义、低语境沟通、单时制时间观、特定型人际关系"
+  },
+  {
+    "id": "hc_ja",
+    "name": "日语圈",
+    "name_en": "Japanese",
+    "regions": "日本",
+    "general_traits": "高权力距离、集体主义、极高语境沟通、严格单时制、等级分明的敬语体系"
+  },
+  {
+    "id": "hc_ko",
+    "name": "韩语圈",
+    "name_en": "Korean",
+    "regions": "韩国",
+    "general_traits": "较高权力距离、集体主义、高语境沟通、年龄序列严格、强烈的'我们'意识"
+  },
+  {
+    "id": "hc_es",
+    "name": "西班牙语圈",
+    "name_en": "Hispanophone",
+    "regions": "西班牙、墨西哥、阿根廷、哥伦比亚等拉丁美洲国家",
+    "general_traits": "中等权力距离、集体主义倾向、多时制时间观、热情外向、亲密空间距离"
+  },
+  {
+    "id": "hc_ar",
+    "name": "阿拉伯语圈",
+    "name_en": "Arabic-speaking",
+    "regions": "沙特阿拉伯、埃及、阿联酋、摩洛哥等中东及北非国家",
+    "general_traits": "高权力距离、强集体主义（家族中心）、宗教与社会规范深度交织、荣誉文化、性别空间分离"
+  },
+  {
+    "id": "hc_ru",
+    "name": "俄语圈",
+    "name_en": "Russian-speaking",
+    "regions": "俄罗斯、白俄罗斯、哈萨克斯坦等",
+    "general_traits": "高权力距离、集体主义传统、中等语境、直接表达风格、关系型社会（'связи'人脉文化）"
+  },
+  {
+    "id": "hc_fr",
+    "name": "法语圈",
+    "name_en": "Francophone",
+    "regions": "法国、比利时、瑞士法语区、魁北克等",
+    "general_traits": "较高权力距离、个人主义、中等语境、重视形式礼仪、特定型关系、辩论文化"
+  },
+  {
+    "id": "hc_th",
+    "name": "东南亚文化圈",
+    "name_en": "Southeast Asian",
+    "regions": "泰国、越南、印度尼西亚、菲律宾等",
+    "general_traits": "高权力距离、集体主义、高语境沟通、多时制时间观、'面子'文化、非对抗性沟通风格"
+  }
+]

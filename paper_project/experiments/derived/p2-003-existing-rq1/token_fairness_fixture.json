@@ -1,0 +1,19 @@
+{
+  "left": "C1_Full",
+  "left_mean": 100,
+  "mean_relative_difference": 0.0,
+  "mean_tolerance": 0.05,
+  "pair_tolerance": 0.1,
+  "pairs": [
+    {
+      "base_case_id": "case-1",
+      "left": 100,
+      "passed": true,
+      "relative_difference": 0.0,
+      "right": 100
+    }
+  ],
+  "passed": true,
+  "right": "C2_NoAgent_Monolith",
+  "right_mean": 100
+}

@@ -1,0 +1,68 @@
+{
+  "approval": {
+    "approved_at": "2026-08-26T00:00:00Z",
+    "execution_approved_by": "P0",
+    "protocol_frozen_by": "P2",
+    "stop_reason": null
+  },
+  "artifacts": [],
+  "conditions": [
+    "C1_Full",
+    "C2_NoAgent_Monolith"
+  ],
+  "cost": {
+    "actual_cny": 0,
+    "budget_limit_cny": 0,
+    "estimated_cny": 0,
+    "status": "zero_cost"
+  },
+  "counts": {
+    "completed_calls": 2,
+    "failed_calls": 0,
+    "planned_calls": 2,
+    "retry_calls": 0
+  },
+  "experiment_id": "fixture",
+  "fairness": {
+    "condition_mean_tolerance_pct": 5,
+    "notes": [],
+    "pair_tolerance_pct": 10,
+    "passed": true,
+    "primary_metric": "sum_prompt_plus_completion_tokens"
+  },
+  "generation_config": {
+    "endpoint_id": "local-fixture",
+    "max_input_tokens": 100,
+    "max_output_tokens": 100,
+    "max_retries": 0,
+    "model": "fixture-v1",
+    "model_version": "1",
+    "prompt_template_sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+    "provider": "fixture",
+    "seed": 1,
+    "temperature": 0.0,
+    "timeout_ms": 1000,
+    "top_p": 1.0
+  },
+  "research_questions": [
+    "RQ1"
+  ],
+  "run_id": "fixture-zero-cost",
+  "schema_version": "1.0",
+  "stage": "local_reanalysis",
+  "timestamps": {
+    "ended_at": "2026-08-26T00:00:00Z",
+    "started_at": "2026-08-26T00:00:00Z",
+    "timezone": "Asia/Shanghai"
+  },
+  "versions": {
+    "canonical_schema_version": "1.0",
+    "case_list_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+    "code_commit": null,
+    "code_dirty": null,
+    "converter_sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+    "dataset_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+    "dataset_version": "fixture",
+    "source_archive_sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+  }
+}

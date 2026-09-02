@@ -1,0 +1,22 @@
+citation_id,tier,short_paper_use,reason,version_risk
+chu2025agents,main-citable,"one-sentence educational-agent context","formal Findings survey; does not validate architecture",low
+edge2024graphrag,background-only,"omit from four-page main text","KG is outside short-paper core",preprint
+godwinjones2024,optional,"motivation or Limitations only","critical synthesis on pragmatics; no system evidence",preprint
+liu2025intercultural,background-only,"normally omit","indirect background and not an LLM experiment",low
+peng2024graphrag,background-only,"omit from four-page main text","KG survey outside short-paper core",preprint
+sun2025multitutor,main-citable,"closest educational role-decomposition system","workshop evidence; no fair token-controlled causal comparison",workshop
+thomas1983,main-citable,"compact cross-cultural pragmatics foundation","supports conceptual distinction only",low
+wang2024chatgpt,optional,"Chinese-L2/L1-adjacent context if space permits","Spanish-speaking learners; no role ablation",low
+chen2024judge,main-citable,"supports evaluation-pollution and validation motivation","does not establish this pilot's contamination",low
+singh2024culture,main-citable,"establishes cultural adaptation as prior task","not educational or Chinese-specific",low
+canal2024kg,background-only,"omit from four-page main text","KG outside short-paper core",workshop
+imperial2024standardize,optional,"structured standards context only if method needs it","not role decomposition or cross-cultural",low
+rebedea2023nemo,background-only,"RQ3 descriptive background only","general guardrail toolkit",low
+raihan2026codeguard,background-only,"RQ3 descriptive background/appendix only","CS prompt safety not cache admission",low
+havaldar2025culture,optional,"evaluation design or Limitations","workshop benchmark; not Chinese teaching",workshop
+tran2026equalbudget,main-citable,"motivates explicit budget accounting in Pilot","non-education preprint under review; thinking-token budget differs from project budget",preprint
+liu2025clca,optional,"component-ablation neighbor if space permits","culture-value alignment not instructional pragmatics",low
+xu2025clte,main-citable,"direct Chinese-L2 instructional-content task context","no native-culture or MAS ablation",low
+liffiton2023codehelp,background-only,"RQ3 descriptive background only","programming guardrails; no output-cache admission",low
+chen2024spiral,background-only,"normally omit; optional Limitations analogy","open-domain RAG preprint; not education cache",preprint
+cui2023adaptive,optional,"general language-exercise generation context","not Chinese-specific or cross-cultural",low

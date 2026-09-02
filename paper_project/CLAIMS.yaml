@@ -1,0 +1,62 @@
+version: "0.1"
+status: provisional
+
+claims:
+  - id: C1
+    rq: RQ1
+    statement: 多智能体角色分解在跨文化中文教学内容生成上优于公平设置的单体 LLM。
+    status: pilot_only
+    existing_evidence:
+      - experiment_results/rq1_mini_outputs.jsonl
+      - experiment_results/rq1_mini_cieval.jsonl
+      - experiment_results/rq1_ablation_report.md
+    evidence_gaps:
+      - 公平 token 与上下文预算基线
+      - 独立评价或人工验证
+      - 扩充样本与稳健统计
+    evidence_status_note: 现有 CIEval A 与总分比较受评价字段不对称污染，不得进入主结果表；必须使用统一 schema 后重新评价。
+    forbidden_wording:
+      - 首个教育多智能体系统
+      - 全面显著优于
+
+  - id: C2
+    rq: RQ2
+    statement: 跨文化比较智能体 A3 是当前系统文化理论正确性增益的主要来源。
+    status: pilot_only
+    existing_evidence:
+      - experiment_results/rq1_ablation_report.md
+    evidence_gaps:
+      - 排除 CIEval A 维度对 A3 输出结构的循环偏爱
+      - 独立 Judge
+      - 小规模专家盲评
+    evidence_status_note: 现有 Full vs NoA3 的 CIEval A 存在循环评价，不能作为独立有效性证据。
+    forbidden_wording:
+      - A3 已被证明对所有文化圈普遍有效
+
+  - id: C3
+    rq: RQ3
+    statement: 分阶段质量网关能够区分弱生成结果并控制缓存准入风险。
+    status: descriptive_appendix_only
+    existing_evidence:
+      - experiment_results/rq1_a5_guardrail.jsonl
+      - experiment_results/rq1_a5_report.md
+    evidence_gaps:
+      - 漏放率
+      - 误杀率置信区间
+      - 风险与成本曲线
+    evidence_status_note: 现有拒绝率与缓存准入率可作描述统计；在取得独立人工真值前不得称为误杀率或漏放率。
+    forbidden_wording:
+      - A5 显著提高平均内容质量
+
+  - id: C4
+    rq: supplemental
+    statement: 知识图谱约束可能改善生成内容的事实锚定和等级适配。
+    status: exploratory_only
+    existing_evidence:
+      - experiment_results/cieval_leaderboard/
+    evidence_gaps:
+      - 公平 KG 与 NoKG 配对实验
+    evidence_status_note: 当前仅允许进入探索性附录，不立即付费重跑。
+    forbidden_wording:
+      - 本系统实现了完整 GraphRAG
+      - 知识图谱显著提升质量

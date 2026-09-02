@@ -1,0 +1,65 @@
+graph TB
+    subgraph Frontend["Frontend (Next.js + React)"]
+        HP[HomePage 画像采集]
+        LP[Learning Page 学习页]
+        KG[Knowledge Graph 可视化]
+    end
+
+    subgraph API["API Layer (Route Handlers)"]
+        LA["/api/learning"]
+        UA["/api/learners"]
+        KA["/api/knowledge-points"]
+    end
+
+    subgraph AgentOrch["Agent Orchestration"]
+        LG[LangGraph StateGraph]
+        MC[MultiAgentCoordinator 手写编排]
+    end
+
+    subgraph Agents["5-Agent Pipeline"]
+        A1[A1: LearnerProfiler 学习者画像]
+        A2[A2: MotherTongueExplainer 母语阐释]
+        A3[A3: CulturalComparator 跨文化对比]
+        A4[A4: ContentGenerator 教案生成]
+        A5[A5: QualityController 质量审核]
+    end
+
+    subgraph Guardrail["Guardrail Layer 防幻觉网关"]
+        G1[verifyA2Translation 回译裁判]
+        G2[verifyA3Comparison 客观性裁判]
+        G3[verifyA4SolverAdversarial Solver对抗]
+        G4[preA5HardRulesFilter 硬规则]
+        G5[verifyA4Grounding 交叉校验]
+        G6[verifyA5JointArbitration 双模型仲裁]
+    end
+
+    subgraph Data["Data Layer"]
+        PG[(Supabase PostgreSQL 13表)]
+        N4J[(Neo4j Graph DB)]
+        Cache[llm_content_cache 缓存池]
+    end
+
+    subgraph Models["Model Layer"]
+        DS[DeepSeek API]
+        MM[MiniMax-M2.7 API]
+        CZ[Coze/Doubao API]
+    end
+
+    HP --> LA
+    LA --> LG
+    LA --> MC
+    LG --> A1 --> A2
+    LG --> A3
+    A1 --> Cache
+    A2 --> G1
+    A3 --> G2
+    A4 --> G3
+    A4 --> G4
+    A4 --> G5
+    A5 --> G6
+    G1 & G2 & G3 & G4 & G5 & G6 --> Cache
+    A2 & A3 & A4 & A5 --> DS
+    A2 & A5 --> MM
+    A1 & A4 & A5 --> CZ
+    Cache --> PG
+    A1 & A3 --> N4J

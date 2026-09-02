@@ -1,0 +1,46 @@
+{
+  "_comment": "单一事实源 (SSOT) — 代码与论文文档都应从本文件取模型口径，禁止手填。由 check_doc_consistency.py 校验。",
+  "version": "2",
+  "updated": "2026-08-06",
+  "generation": {
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "role": "LangGraph 多智能体生成引擎（A1-A5）"
+  },
+  "judge": {
+    "primary": {
+      "provider": "openai",
+      "model": "qwen3.7-plus",
+      "gateway": "eflowcode.cc",
+      "role": "CIEval 主裁判（与生成 DeepSeek 异族，保证独立性）"
+    },
+    "secondary": {
+      "provider": "glm",
+      "model": "glm-5",
+      "gateway": "eflowcode.cc",
+      "role": "第二裁判（双裁判一致性验证，judge2 预设）"
+    }
+  },
+  "guardrail": {
+    "low_stakes": {
+      "provider": "openai",
+      "model": "qwen3.6-plus",
+      "gateway": "eflowcode.cc",
+      "role": "回译NLI / A3对比 / A4接地 等低 stakes 校验"
+    },
+    "high_stakes": {
+      "provider": "deepseek",
+      "model": "deepseek-chat",
+      "role": "A4语义等价 solver / A5联合仲裁 / 最终review"
+    }
+  },
+  "removed": {
+    "sdk": "coze-coding-dev-sdk",
+    "models_removed": ["doubao-seed-2-0-pro-260215", "MiniMax-M2.7"],
+    "reason": "Coze SDK 已废弃，2026-08-06 全量清理；生成统一走 UnifiedLLMService"
+  },
+  "model_agnosticism_experiment": {
+    "status": "planned",
+    "scope": "DeepSeek / qwen / glm 三模型对照（替代原 豆包-vs-GPT4-vs-Claude 计划）"
+  }
+}

@@ -1,0 +1,195 @@
+version: "0.1"
+
+tasks:
+  - id: SETUP-001
+    owner: P0
+    title: 建立论文项目共享中枢
+    status: completed
+    outputs:
+      - paper_project/PROJECT.md
+      - paper_project/STATE.yaml
+      - paper_project/CLAIMS.yaml
+      - paper_project/DECISIONS.md
+      - paper_project/TASKS.yaml
+      - paper_project/agents/
+
+  - id: SETUP-002
+    owner: Human PI
+    title: 审批章程并填写 API 成本硬上限
+    status: completed
+    depends_on:
+      - SETUP-001
+    outputs:
+      - API 硬上限 500 CNY
+      - 350 CNY 触发缩减审查
+      - 2 位人工盲评者，每人 15–20 条
+
+  - id: P0-001
+    owner: P0
+    title: 冻结论文一句话主张、RQ1-RQ3 和三个贡献
+    status: completed
+    depends_on:
+      - SETUP-002
+    outputs:
+      - paper_project/RESEARCH_PLAN.md
+
+  - id: P1-001
+    owner: P1
+    title: 建立已核验文献矩阵与 Research Gap
+    status: completed
+    depends_on:
+      - P0-001
+    outputs:
+      - paper_project/literature/approved_literature.csv
+      - paper_project/literature/competitive_work_matrix.md
+      - paper_project/literature/novelty_risk_review.md
+      - paper_project/literature/opening_report_audit.md
+
+  - id: P2-001
+    owner: P2
+    title: 审计已有实验并设计最低成本证据补全方案
+    status: completed
+    depends_on:
+      - P0-001
+    outputs:
+      - paper_project/experiments/P2-001-existing-evidence-audit.md
+
+  - id: P0-002
+    owner: P0
+    title: 仲裁文献与实验审计发现，冻结修正方案
+    status: completed
+    depends_on:
+      - P1-001
+      - P2-001
+
+  - id: P1-002
+    owner: P1
+    title: 固化已核验 Related Work 定位与引用边界
+    status: completed
+    depends_on:
+      - P0-002
+
+  - id: P2-002
+    owner: P2
+    title: 设计统一评价结构、实验 manifest 与人工盲评协议
+    status: completed
+    budget_limit_cny: 0
+    depends_on:
+      - P0-002
+
+  - id: P3-001
+    owner: P3
+    title: 建立 COLING 论文骨架
+    status: completed
+    depends_on:
+      - P0-001
+
+  - id: P4-001
+    owner: P4
+    title: 审查研究问题和证据计划
+    status: completed
+    depends_on:
+      - P1-001
+      - P2-001
+
+  - id: P1-003
+    owner: P1
+    title: 执行可审计的定向滚雪球与增量检索
+    status: completed_pending_reverse_review
+    budget_limit_cny: 0
+    depends_on:
+      - P4-001
+
+  - id: P2-003
+    owner: P2
+    title: 修复 P4 Blocker 并实施零成本本地评价工具
+    status: completed_pending_reverse_review
+    budget_limit_cny: 0
+    depends_on:
+      - P4-001
+
+  - id: P1-004
+    owner: P1
+    title: 对 P1-003 文献与 Gap 节点执行反向审查
+    status: completed_fail_revise
+    budget_limit_cny: 0
+    depends_on:
+      - P1-003
+
+  - id: P2-004
+    owner: P2
+    title: 对 P2-003 协议与本地实施节点执行反向审查
+    status: completed_fail_revise
+    budget_limit_cny: 0
+    depends_on:
+      - P2-003
+
+  - id: P1-005
+    owner: P1
+    title: 按短文路线修复文献可审计性与引用分层
+    status: completed_pass_with_conditions
+    budget_limit_cny: 0
+    depends_on:
+      - P1-004
+
+  - id: P2-005
+    owner: P2
+    title: 按短文 Pilot 路线修复评价对象、文化错配与静态门，并审计双知识图谱
+    status: completed_pass_with_conditions
+    budget_limit_cny: 0
+    depends_on:
+      - P2-004
+    required_outputs:
+      - paper_project/experiments/P2-005-dual-knowledge-graph-audit.md
+      - paper_project/experiments/P2-005-implementation-report.md
+      - paper_project/reviews/milestones/2026-08-26-P2-P2-005-reverse-review.md
+
+  - id: P4-002
+    owner: P4
+    title: 独立复审短文 Pilot 的文献与静态实验门
+    status: in_progress
+    depends_on:
+      - P1-005
+      - P2-005
+
+  - id: P5-001
+    owner: P5
+    title: 设计低负担选择题式 Pilot 问卷
+    status: blocked
+    depends_on:
+      - P4-002
+
+  - id: P2-006
+    owner: P2
+    title: 全系统 LLM 调用审计与渐进规范化
+    status: completed_pass_with_conditions
+    budget_limit_cny: 0
+    depends_on:
+      - P2-005
+    required_outputs:
+      - paper_project/experiments/P2-006-llm-call-audit.md
+      - paper_project/experiments/P2-006-implementation-report.md
+      - paper_project/reviews/milestones/2026-08-26-P2-P2-006-reverse-review.md
+
+  - id: P2-007
+    owner: P2
+    title: 根据 e-flowcode 已验证目录收口生成、Judge 与 Guardrail 模型配置
+    status: completed_pass_with_conditions
+    budget_limit_cny: 0
+    depends_on:
+      - P2-006
+    required_outputs:
+      - paper_project/experiments/P2-007-model-config-matrix.md
+      - paper_project/experiments/P2-007-implementation-report.md
+      - paper_project/reviews/milestones/2026-08-26-P2-P2-007-reverse-review.md
+
+  - id: P2-008
+    owner: P2
+    title: 彻底收口活跃 TypeScript LLM 角色配置与历史旁路门禁
+    status: completed_pass_with_conditions
+    budget_limit_cny: 0
+    depends_on:
+      - P2-007
+    required_outputs:
+      - paper_project/experiments/P2-008-configuration-consolidation-report.md
+      - paper_project/reviews/milestones/2026-08-26-P2-P2-008-reverse-review.md

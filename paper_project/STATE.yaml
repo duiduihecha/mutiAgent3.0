@@ -1,0 +1,89 @@
+project: coling-2027-cross-cultural-chinese
+phase: literature_and_experiment_audit
+status: active
+
+deadlines:
+  official_arr_submission: "2026-10-12 23:59 AoE"
+  internal_final_draft: "2026-10-05"
+  submission_ready: "2026-10-11"
+  long_short_decision_gate: "2026-09-15"
+  experiment_stop: "2026-09-25"
+  complete_draft: "2026-10-02"
+
+target:
+  venue: COLING 2027 via ARR
+  current_track: main conference
+  current_format: short
+  fallback_format: short
+  main_body_page_limit_long: 8
+  main_body_page_limit_short: 4
+
+scope:
+  research_questions:
+    - RQ1
+    - RQ2
+  descriptive_appendix:
+    - RQ3
+  max_parallel_workstreams: 2
+  frozen: true
+  frozen_at: "2026-08-26"
+
+budget:
+  currency: CNY
+  hard_limit: 500
+  warning_ratio: 0.70
+  warning_amount: 350
+  spent: 0
+  status: approved
+  stage_1_limit: 250
+  stage_1_approved: true
+
+human_evaluation:
+  target_reviewers: 2
+  samples_per_reviewer_min: 15
+  samples_per_reviewer_max: 20
+  design: blind_review
+  recruitment_status: pending
+
+active_threads:
+  P1:
+    title: COLING-P1 文献与Research Gap
+    thread_id: 01a03c0d-360d-7dc1-bc47-f66a883b93b3
+    host_id: local
+    status: completed
+  P2:
+    title: COLING-P2 系统与实验审计
+    thread_id: 01a03c0d-36c5-78c0-8233-cc77c1b4c17c
+    host_id: local
+    status: completed_pass_with_conditions_awaiting_p4
+  P3:
+    title: COLING-P3 论文骨架与写作
+    thread_id: 01a03c97-f5f7-7060-8d9b-53e8e5095efc
+    host_id: local
+    status: completed
+  P4:
+    title: COLING-P4 导师与红队审查
+    thread_id: 01a03c97-f6da-7ca1-84bb-4794b1fca4bc
+    host_id: local
+    status: completed
+
+versions:
+  paper: "0.1.0"
+  system_commit: unrecorded
+  dataset: cieval-existing
+  experiment: rq1-existing
+  claims: "0.1"
+
+gates:
+  project_charter: passed
+  research_questions: passed
+  literature_gap: p1_pass_with_conditions_awaiting_p4
+  experiment_design: p2_pass_with_conditions_awaiting_p4
+  long_short_decision: short_paper_approved
+  result_verification: pending
+  advisor_review: failed_with_4_blockers
+  submission: pending
+
+next_action:
+  owner: P0
+  action: submit P2-008 complete TypeScript route consolidation and reverse review to P4 static review; pricing verification, provider smoke, and all paid calls remain unauthorized

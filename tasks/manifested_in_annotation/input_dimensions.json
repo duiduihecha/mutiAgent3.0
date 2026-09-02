@@ -1,0 +1,86 @@
+[
+  {
+    "id": "dim_power_distance",
+    "name": "权力距离",
+    "name_en": "Power Distance",
+    "theory_source": "Hofstede",
+    "description": "社会中对权力分配不平等的接受程度。高权力距离文化中，等级制度严格，下属服从上级；低权力距离文化中，上下级关系更平等。"
+  },
+  {
+    "id": "dim_individualism",
+    "name": "个人/集体主义",
+    "name_en": "Individualism vs Collectivism",
+    "theory_source": "Hofstede",
+    "description": "个人与群体关系的紧密程度。个人主义文化强调个人成就和独立；集体主义文化强调群体和谐与归属感。"
+  },
+  {
+    "id": "dim_masculinity",
+    "name": "竞争与关怀导向",
+    "name_en": "Masculinity vs Femininity",
+    "theory_source": "Hofstede",
+    "description": "社会对竞争、成就的重视程度 vs 对关怀、合作的重视程度。竞争导向文化重视成功和物质回报；关怀导向文化重视生活质量和人际关系。"
+  },
+  {
+    "id": "dim_uncertainty",
+    "name": "不确定性规避",
+    "name_en": "Uncertainty Avoidance",
+    "theory_source": "Hofstede",
+    "description": "社会对不确定和模糊情况的容忍度。高不确定性规避文化偏好明确规则和结构；低不确定性规避文化更能接受变化和风险。"
+  },
+  {
+    "id": "dim_long_term",
+    "name": "长期/短期导向",
+    "name_en": "Long-term vs Short-term Orientation",
+    "theory_source": "Hofstede",
+    "description": "社会对长期规划和传统的重视程度。长期导向文化重视坚持、节俭和未来规划；短期导向文化重视当下结果和传统维护。"
+  },
+  {
+    "id": "dim_indulgence",
+    "name": "放纵与克制",
+    "name_en": "Indulgence vs Restraint",
+    "theory_source": "Hofstede",
+    "description": "社会对享乐和欲望的允许程度。放纵文化鼓励满足基本需求和享受生活；克制文化强调规范和对欲望的控制。"
+  },
+  {
+    "id": "dim_high_context",
+    "name": "高低语境",
+    "name_en": "High-context vs Low-context",
+    "theory_source": "Hall",
+    "description": "沟通中对语境的依赖程度。高语境文化中大量信息通过语境、身份、非语言线索传递；低语境文化中信息主要通过明确的语言表达。"
+  },
+  {
+    "id": "dim_proxemics",
+    "name": "空间距离",
+    "name_en": "Proxemics",
+    "theory_source": "Hall",
+    "description": "人际交往中对物理空间距离的偏好和规范。不同文化对亲密距离、社交距离、公共距离的界定差异显著。"
+  },
+  {
+    "id": "dim_chronemics",
+    "name": "时间观念",
+    "name_en": "Chronemics",
+    "theory_source": "Hall",
+    "description": "对时间的感知和使用方式。单时制文化重视准时和一次做一件事；多时制文化重视人际关系，允许多任务并行和时间弹性。"
+  },
+  {
+    "id": "dim_specific_diffuse",
+    "name": "特定型与扩散型界限",
+    "name_en": "Specific vs Diffuse",
+    "theory_source": "Trompenaars",
+    "description": "人际关系和工作关系的界限。特定型文化将工作关系与私人关系严格分开；扩散型文化中工作关系渗透到私人生活中。"
+  },
+  {
+    "id": "dim_face_concern",
+    "name": "面子与尊严",
+    "name_en": "Face and Dignity",
+    "theory_source": "自定义（跨文化语用学）",
+    "description": "对面子（社会形象）的维护方式。面子文化中，避免让他人丢脸是社交核心原则；尊严文化中，个人内在价值不依赖他人评价。"
+  },
+  {
+    "id": "dim_reciprocity",
+    "name": "互惠与人情规范",
+    "name_en": "Reciprocity and Renqing",
+    "theory_source": "自定义（跨文化语用学）",
+    "description": "人际交往中回报和人情往来的规则。人情文化中，互相帮忙、送礼还礼是维持关系的核心机制；契约文化中，关系更多依赖明示协议。"
+  }
+]

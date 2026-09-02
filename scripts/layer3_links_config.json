@@ -1,0 +1,181 @@
+{
+  "_description": "Layer 3 HSK Language System — GrammarPoint 定义及 KnowledgePoint 绑定",
+  "_version": "1.0",
+  "_note": "GrammarPoint 定义覆盖 ~50 个核心汉语语法点，按类别组织。每个 KP 绑定与其场景相关的语法点。",
+  "_categories": {
+    "sentence_patterns": "句型结构",
+    "particles": "助词",
+    "complements": "补语",
+    "measure_words": "量词",
+    "adverbs": "副词",
+    "modals": "能愿动词",
+    "question_forms": "疑问形式",
+    "social_expressions": "社交用语",
+    "discourse": "语篇衔接",
+    "special_structures": "特殊句式",
+    "written_formal": "书面语",
+    "spoken_informal": "口语"
+  },
+
+  "grammar_points": [
+    {"id": "gp_shi_de", "name": "是...的", "name_en": "shì...de emphasis", "category": "sentence_patterns", "hsk_level": 2},
+    {"id": "gp_ba", "name": "把字句", "name_en": "bǎ construction", "category": "sentence_patterns", "hsk_level": 3},
+    {"id": "gp_bei", "name": "被字句", "name_en": "bèi passive", "category": "sentence_patterns", "hsk_level": 4},
+    {"id": "gp_bi", "name": "比字句", "name_en": "bǐ comparison", "category": "sentence_patterns", "hsk_level": 2},
+    {"id": "gp_lian_dou", "name": "连...都/也", "name_en": "lián...dōu/yě (even)", "category": "sentence_patterns", "hsk_level": 4},
+    {"id": "gp_yuelaiyue", "name": "越来越", "name_en": "yuèláiyuè (more and more)", "category": "sentence_patterns", "hsk_level": 3},
+    {"id": "gp_yue_yue", "name": "越...越...", "name_en": "yuè...yuè...", "category": "sentence_patterns", "hsk_level": 3},
+    {"id": "gp_chule_yiwai", "name": "除了...以外", "name_en": "chúle...yǐwài", "category": "sentence_patterns", "hsk_level": 3},
+    {"id": "gp_dui_lai_shuo", "name": "对...来说", "name_en": "duì...láishuō", "category": "sentence_patterns", "hsk_level": 4},
+    {"id": "gp_cong_dao", "name": "从...到...", "name_en": "cóng...dào...", "category": "sentence_patterns", "hsk_level": 2},
+    {"id": "gp_yi_jiu", "name": "一...就...", "name_en": "yī...jiù...", "category": "sentence_patterns", "hsk_level": 3},
+    {"id": "gp_bushi_ershi", "name": "不是...而是...", "name_en": "búshì...érshì...", "category": "sentence_patterns", "hsk_level": 4},
+
+    {"id": "gp_le", "name": "了-完成体与变化", "name_en": "le (aspect/change)", "category": "particles", "hsk_level": 1},
+    {"id": "gp_zhe", "name": "着-持续体", "name_en": "zhe (continuous)", "category": "particles", "hsk_level": 2},
+    {"id": "gp_guo", "name": "过-经验体", "name_en": "guo (experiential)", "category": "particles", "hsk_level": 2},
+    {"id": "gp_de", "name": "的/地/得", "name_en": "de structural particles", "category": "particles", "hsk_level": 2},
+    {"id": "gp_sfp", "name": "吗/呢/吧-句末助词", "name_en": "ma/ne/ba sentence-final", "category": "particles", "hsk_level": 1},
+
+    {"id": "gp_result_comp", "name": "结果补语", "name_en": "result complement", "category": "complements", "hsk_level": 3},
+    {"id": "gp_degree_comp", "name": "程度补语", "name_en": "degree complement", "category": "complements", "hsk_level": 3},
+    {"id": "gp_potential_comp", "name": "可能补语", "name_en": "potential complement", "category": "complements", "hsk_level": 4},
+    {"id": "gp_direction_comp", "name": "趋向补语", "name_en": "directional complement", "category": "complements", "hsk_level": 3},
+    {"id": "gp_quantity_comp", "name": "数量补语", "name_en": "quantity complement", "category": "complements", "hsk_level": 2},
+
+    {"id": "gp_measure_words", "name": "常用名量词", "name_en": "nominal measure words", "category": "measure_words", "hsk_level": 1},
+
+    {"id": "gp_jiu_cai", "name": "就/才", "name_en": "jiù/cái", "category": "adverbs", "hsk_level": 2},
+    {"id": "gp_dou_ye", "name": "都/也", "name_en": "dōu/yě", "category": "adverbs", "hsk_level": 1},
+    {"id": "gp_hai_you_zai", "name": "还/又/再", "name_en": "hái/yòu/zài", "category": "adverbs", "hsk_level": 2},
+
+    {"id": "gp_neng_hui_keyi", "name": "能/会/可以", "name_en": "néng/huì/kěyǐ", "category": "modals", "hsk_level": 1},
+    {"id": "gp_yao_xiang_yinggai", "name": "要/想/应该", "name_en": "yào/xiǎng/yīnggāi", "category": "modals", "hsk_level": 2},
+
+    {"id": "gp_zhengfan_q", "name": "正反疑问句", "name_en": "A-not-A questions", "category": "question_forms", "hsk_level": 1},
+    {"id": "gp_xuanze_q", "name": "选择疑问句", "name_en": "alternative questions", "category": "question_forms", "hsk_level": 2},
+    {"id": "gp_tezhi_q", "name": "特指疑问句", "name_en": "wh-questions", "category": "question_forms", "hsk_level": 1},
+    {"id": "gp_fanwen_q", "name": "反问句", "name_en": "rhetorical questions", "category": "question_forms", "hsk_level": 4},
+
+    {"id": "gp_polite_request", "name": "礼貌请求表达", "name_en": "polite requests", "category": "social_expressions", "hsk_level": 1},
+    {"id": "gp_modest_expr", "name": "谦虚与客套表达", "name_en": "modest expressions", "category": "social_expressions", "hsk_level": 3},
+    {"id": "gp_indirect_refusal", "name": "委婉拒绝与推辞", "name_en": "indirect refusal", "category": "social_expressions", "hsk_level": 4},
+    {"id": "gp_address_honorific", "name": "称呼与敬语系统", "name_en": "address & honorifics", "category": "social_expressions", "hsk_level": 3},
+    {"id": "gp_apology_thanks", "name": "道歉与感谢表达", "name_en": "apologies & thanks", "category": "social_expressions", "hsk_level": 2},
+    {"id": "gp_greeting_smalltalk", "name": "寒暄与问候", "name_en": "greetings & small talk", "category": "social_expressions", "hsk_level": 1},
+
+    {"id": "gp_conjunctions", "name": "关联词", "name_en": "conjunctions (dànshì, yīnwèi...suǒyǐ...)", "category": "discourse", "hsk_level": 2},
+    {"id": "gp_progressive", "name": "递进关系", "name_en": "progressive (búdàn...érqiě...)", "category": "discourse", "hsk_level": 4},
+    {"id": "gp_conditional", "name": "假设与条件关系", "name_en": "conditional (rúguǒ/yàoshi...jiù...)", "category": "discourse", "hsk_level": 3},
+
+    {"id": "gp_pivotal", "name": "兼语句", "name_en": "pivotal construction", "category": "special_structures", "hsk_level": 4},
+    {"id": "gp_existential", "name": "存现句", "name_en": "existential sentences", "category": "special_structures", "hsk_level": 3},
+    {"id": "gp_topic_comment", "name": "话题句", "name_en": "topic-comment structure", "category": "special_structures", "hsk_level": 4},
+
+    {"id": "gp_formal_written", "name": "书面语表达", "name_en": "formal written expressions", "category": "written_formal", "hsk_level": 4},
+    {"id": "gp_idioms", "name": "成语与固定表达", "name_en": "chéngyǔ & fixed expressions", "category": "written_formal", "hsk_level": 5},
+
+    {"id": "gp_colloquial", "name": "口语化表达", "name_en": "colloquial expressions", "category": "spoken_informal", "hsk_level": 3},
+    {"id": "gp_ellipsis", "name": "省略与简化", "name_en": "ellipsis & simplification", "category": "spoken_informal", "hsk_level": 3}
+  ],
+
+  "kp_grammar_bindings": {
+    "_note": "每个 KP 绑定与其语用场景相关的语法点。语法点按需分配给对应场景。",
+
+    "food_ordering_basic": [
+      "gp_sfp", "gp_neng_hui_keyi", "gp_measure_words", "gp_tezhi_q",
+      "gp_polite_request", "gp_zhengfan_q", "gp_le", "gp_dou_ye"
+    ],
+    "food_ordering_special": [
+      "gp_yao_xiang_yinggai", "gp_shi_de", "gp_guo", "gp_xuanze_q",
+      "gp_indirect_refusal", "gp_polite_request", "gp_sfp"
+    ],
+    "food_ordering_recommend": [
+      "gp_polite_request", "gp_zhengfan_q", "gp_tezhi_q", "gp_sfp",
+      "gp_neng_hui_keyi", "gp_greeting_smalltalk"
+    ],
+
+    "food_treat_pay": [
+      "gp_ba", "gp_jiu_cai", "gp_modest_expr", "gp_apology_thanks",
+      "gp_conjunctions", "gp_polite_request", "gp_le"
+    ],
+    "food_treat_refuse": [
+      "gp_indirect_refusal", "gp_bei", "gp_lian_dou", "gp_yuelaiyue",
+      "gp_fanwen_q", "gp_modest_expr", "gp_pivotal"
+    ],
+    "food_treat_invite": [
+      "gp_polite_request", "gp_greeting_smalltalk", "gp_neng_hui_keyi",
+      "gp_yao_xiang_yinggai", "gp_conjunctions", "gp_sfp"
+    ],
+
+    "food_manners_chopsticks": [
+      "gp_zhe", "gp_hai_you_zai", "gp_ba", "gp_de",
+      "gp_conditional"
+    ],
+    "food_manners_seating": [
+      "gp_shi_de", "gp_cong_dao", "gp_dui_lai_shuo", "gp_address_honorific",
+      "gp_polite_request"
+    ],
+    "food_manners_toast": [
+      "gp_polite_request", "gp_modest_expr", "gp_greeting_smalltalk",
+      "gp_conjunctions", "gp_apology_thanks", "gp_ba"
+    ],
+
+    "food_street_order": [
+      "gp_tezhi_q", "gp_zhengfan_q", "gp_sfp", "gp_le",
+      "gp_measure_words", "gp_neng_hui_keyi"
+    ],
+    "food_street_culture": [
+      "gp_guo", "gp_bi", "gp_dui_lai_shuo", "gp_hai_you_zai",
+      "gp_conjunctions"
+    ],
+
+    "workplace_meeting_speak": [
+      "gp_indirect_refusal", "gp_bushi_ershi", "gp_dui_lai_shuo",
+      "gp_topic_comment", "gp_colloquial", "gp_conjunctions", "gp_de"
+    ],
+    "workplace_meeting_agree": [
+      "gp_jiu_cai", "gp_hai_you_zai", "gp_le", "gp_colloquial",
+      "gp_sfp", "gp_modest_expr"
+    ],
+    "workplace_meeting_minutes": [
+      "gp_formal_written", "gp_idioms", "gp_bei", "gp_progressive",
+      "gp_indirect_refusal", "gp_shi_de"
+    ],
+
+    "workplace_email_formal": [
+      "gp_formal_written", "gp_address_honorific", "gp_conjunctions",
+      "gp_shi_de", "gp_polite_request", "gp_apology_thanks"
+    ],
+    "workplace_wechat_work": [
+      "gp_colloquial", "gp_ellipsis", "gp_greeting_smalltalk",
+      "gp_hai_you_zai", "gp_sfp", "gp_polite_request"
+    ],
+    "workplace_email_pushback": [
+      "gp_indirect_refusal", "gp_formal_written", "gp_conditional",
+      "gp_conjunctions", "gp_address_honorific", "gp_progressive"
+    ],
+
+    "workplace_hierarchy_title": [
+      "gp_address_honorific", "gp_polite_request", "gp_shi_de",
+      "gp_dui_lai_shuo", "gp_modest_expr", "gp_apology_thanks"
+    ],
+    "workplace_hierarchy_face": [
+      "gp_indirect_refusal", "gp_modest_expr", "gp_topic_comment",
+      "gp_fanwen_q", "gp_pivotal", "gp_conditional"
+    ],
+    "workplace_hierarchy_gift": [
+      "gp_polite_request", "gp_modest_expr", "gp_apology_thanks",
+      "gp_conditional", "gp_conjunctions", "gp_address_honorific"
+    ],
+
+    "workplace_interview_self": [
+      "gp_shi_de", "gp_modest_expr", "gp_conjunctions", "gp_degree_comp",
+      "gp_address_honorific", "gp_greeting_smalltalk", "gp_polite_request"
+    ],
+    "workplace_interview_salary": [
+      "gp_conditional", "gp_neng_hui_keyi", "gp_bi", "gp_indirect_refusal",
+      "gp_conjunctions", "gp_dui_lai_shuo"
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "canonical-evaluation.schema.json",
+  "title": "Canonical Evaluation Item",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "evaluation_item_id", "task", "material", "completeness", "source_audit", "diagnostics"],
+  "properties": {
+    "schema_version": {"const": "1.1"},
+    "evaluation_item_id": {"type": "string", "minLength": 1},
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["knowledge_point_id", "domain", "scene", "pragmatic_intent", "native_culture", "hsk_level", "anxiety_band"],
+      "properties": {
+        "knowledge_point_id": {"type": "string"},
+        "domain": {"type": "string"},
+        "scene": {"type": "string"},
+        "pragmatic_intent": {"type": "string"},
+        "native_culture": {"type": "string"},
+        "hsk_level": {"type": "integer", "minimum": 1, "maximum": 9},
+        "anxiety_band": {"enum": ["low", "medium", "high", "unknown"]}
+      }
+    },
+    "material": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["explanation", "cross_cultural_comparison", "language_points", "exercises"],
+      "properties": {
+        "explanation": {"type": "string"},
+        "cross_cultural_comparison": {"type": "string"},
+        "language_points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["zh", "native", "note"],
+            "properties": {
+              "zh": {"type": "string"},
+              "native": {"type": "string"},
+              "note": {"type": "string"}
+            }
+          }
+        },
+        "exercises": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "question", "options", "correct_answer", "explanation", "dimension"],
+            "properties": {
+              "type": {"enum": ["multiple_choice", "true_false", "fill_blank", "short_answer", "other"]},
+              "question": {"type": "string"},
+              "options": {"type": "array", "items": {"type": "string"}},
+              "correct_answer": {"type": "string"},
+              "explanation": {"type": "string"},
+              "dimension": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "completeness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["explanation_present", "comparison_present", "language_points_present", "exercises_present", "exercise_count", "mapping_warnings"],
+      "properties": {
+        "explanation_present": {"type": "boolean"},
+        "comparison_present": {"type": "boolean"},
+        "language_points_present": {"type": "boolean"},
+        "exercises_present": {"type": "boolean"},
+        "exercise_count": {"type": "integer", "minimum": 0},
+        "mapping_warnings": {"type": "array", "items": {"enum": ["NO_FINAL_CONTAINER", "MISSING_EXPLANATION", "MISSING_COMPARISON", "MISSING_LANGUAGE_POINTS", "MISSING_EXERCISES", "INVALID_EXERCISE_SCHEMA", "UNRECOGNIZED_TYPE", "INVALID_LANGUAGE_POINT", "INCOMPLETE_EXERCISE"]}, "uniqueItems": true}
+      }
+    },
+    "source_audit": {"type": "object"},
+    "diagnostics": {"type": "object"}
+  }
+}

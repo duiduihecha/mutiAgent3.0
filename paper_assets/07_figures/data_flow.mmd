@@ -1,0 +1,23 @@
+flowchart TB
+    U((User 用户)) -->|POST /api/learning| API[API Handler]
+    API -->|1.parse 解析| Scene{Scene→KP Mapping 场景映射}
+    Scene -->|2.lookup 查询| Learner[(learners table 学习者表)]
+    Learner -->|3.cache check 缓存检查| Cache[(llm_content_cache)]
+    Cache -->|hit 命中| Short[Short-circuit Path 短路路径]
+    Cache -->|miss 未命中| Full[Full Pipeline 完整链路]
+
+    Full -->|4.profile 画像| A1[A1: LearnerProfiler]
+    A1 -->|anxiety_data 焦虑数据| A2N[A2: Explainer]
+    A1 -->|anxiety_data| A3N[A3: Comparator]
+    A2N -->|cultural_explanation 文化阐释| MergeN[mergeA2A3]
+    A3N -->|cross_cultural_comparison 跨文化对比| MergeN
+    MergeN --> A4N[A4: Generator]
+    A4N -->|exercises 练习题| A5N[A5: Controller]
+    A5N -->|quality_review 审核结果| SaveN[saveKB]
+
+    Short --> SaveN
+
+    SaveN -->|computeCacheConfidence 加权置信度| WCache[(Cache Write 缓存写回)]
+    API -->|create 创建| LRec[(learning_records 学习记录)]
+    API -->|format 格式化| Response[JSON Response]
+    Response --> U
