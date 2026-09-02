@@ -4,14 +4,16 @@
   "buildCommand": "pnpm install --prefer-frozen-lockfile --prefer-offline && pnpm next build",
   "installCommand": "pnpm install --prefer-frozen-lockfile",
   "outputDirectory": ".next",
-  "regions": ["hnd1"],
+  "regions": [
+    "hnd1"
+  ],
   "functions": {
     "app/api/**/*.ts": {
-      "maxDuration": 600,
+      "maxDuration": 300,
       "memory": 512
     },
     "app/api/learning/**/*.ts": {
-      "maxDuration": 600,
+      "maxDuration": 300,
       "memory": 1024
     }
   },
