@@ -183,6 +183,9 @@ export default function LearningPage() {
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<LearningData | null>(null);
   const [activeTab, setActiveTab] = useState<TabValue>("explanation");
+
+  // 渐进加载进度（从 jobs 轮询里的 stage/progress 实时更新）
+  const [progress, setProgress] = useState({ pct: 0, label: "准备中...", modulesDone: {} as Record<string, boolean> });
   
   // 答题状态
   const [currentQ, setCurrentQ] = useState(0);
@@ -316,6 +319,14 @@ export default function LearningPage() {
               continue;
             }
             const taskStatus: string = taskJson.task.status;
+            // 更新进度（不管 running 还是 completed）
+            if (taskJson.task.progress !== undefined) {
+              setProgress({
+                pct: taskJson.task.progress,
+                label: taskJson.task.stage_label || "处理中...",
+                modulesDone: taskJson.task.modules_done || {},
+              });
+            }
             if (taskStatus === "completed") {
               setData(taskJson.task.result);
               if (taskJson.task.result?.learner?.id) {
@@ -498,17 +509,67 @@ export default function LearningPage() {
     }
   };
 
-  // 加载状态
+  // 加载状态（渐进式：显示阶段进度 + 各模块完成状态）
   if (loading) {
+    const { pct, label, modulesDone } = progress;
+    const steps = [
+      { key: "cultural_explanation", label: "母语阐释", icon: "🌐" },
+      { key: "comparison",          label: "跨文化对比", icon: "⚖️" },
+      { key: "content",             label: "文化内容", icon: "📚" },
+      { key: "exercises",           label: "练习题", icon: "✏️" },
+    ];
     return (
       <div className="min-h-screen bg-slate-50 p-4 flex items-center justify-center">
         <Card className="w-full max-w-2xl">
-          <CardContent className="p-8 text-center">
-            <div className="animate-pulse">
-              <div className="h-8 bg-slate-200 rounded mb-4 w-48 mx-auto"></div>
-              <div className="h-4 bg-slate-200 rounded w-32 mx-auto"></div>
+          <CardContent className="p-8">
+            {/* 顶部进度条 */}
+            <div className="mb-6">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm font-medium text-slate-700">{label}</span>
+                <span className="text-sm font-bold text-blue-600">{pct}%</span>
+              </div>
+              <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full transition-all duration-500 ease-out"
+                  style={{ width: `${pct}%` }}
+                />
+              </div>
             </div>
-            <p className="mt-4 text-slate-500">正在生成学习内容...</p>
+
+            {/* 四模块 checklist */}
+            <div className="grid grid-cols-2 gap-3">
+              {steps.map((step) => {
+                const done = modulesDone[step.key];
+                return (
+                  <div
+                    key={step.key}
+                    className={`flex items-center gap-3 p-3 rounded-lg border transition-all duration-300 ${
+                      done
+                        ? "bg-green-50 border-green-200"
+                        : "bg-slate-50 border-slate-200"
+                    }`}
+                  >
+                    <div className={`text-2xl transition-transform ${done ? "scale-110" : "opacity-50"}`}>
+                      {step.icon}
+                    </div>
+                    <div className="flex-1">
+                      <div className={`font-medium text-sm ${done ? "text-green-700" : "text-slate-500"}`}>
+                        {step.label}
+                      </div>
+                      <div className="text-xs text-slate-400">
+                        {done ? "✓ 已生成" : "⏳ 生成中..."}
+                      </div>
+                    </div>
+                    {done && <span className="text-green-500 text-lg">✓</span>}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* 底部提示 */}
+            <p className="mt-6 text-center text-slate-400 text-xs">
+              首次生成约需 2-3 分钟，缓存命中后秒开
+            </p>
           </CardContent>
         </Card>
       </div>

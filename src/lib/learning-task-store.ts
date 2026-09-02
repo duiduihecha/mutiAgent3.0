@@ -43,9 +43,22 @@ export interface LearningTask {
   createdAt: number;
   updatedAt: number;
   result?: Record<string, unknown>;
+  partial?: Record<string, unknown>;
   error?: string;
   error_detail?: Record<string, unknown>;
 }
+
+// stage → 进度百分比 + 友好标签（前端进度条用）
+export const STAGE_PROGRESS: Record<LearningTaskStage, { pct: number; label: string }> = {
+  queued:      { pct: 0,   label: "排队中..." },
+  cache_check: { pct: 5,   label: "检查缓存..." },
+  a1:          { pct: 10,  label: "分析学习画像..." },
+  a2a3:        { pct: 30,  label: "生成母语阐释与跨文化对比..." },
+  a4:          { pct: 60,  label: "生成场景化内容与练习题..." },
+  a5:          { pct: 80,  label: "质量审核中..." },
+  guardrail:   { pct: 85,  label: "安全检查..." },
+  saving:      { pct: 95,  label: "保存结果..." },
+};
 
 const tasks = new Map<string, LearningTask>();
 const RUNNING_TTL_MS = 20 * 60_000;       // 任务最长执行时间（对齐路由超时上限）
